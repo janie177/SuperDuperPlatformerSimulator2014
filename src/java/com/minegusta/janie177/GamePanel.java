@@ -74,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable
 	
 	private void draw()
 	{
-		BackGround bg = new BackGround("/main/resources/bg/a.gif");
+		BackGround bg = new BackGround("/src/resources/bg/a.gif");
 		bg.create(g2d);
 	}
 	
