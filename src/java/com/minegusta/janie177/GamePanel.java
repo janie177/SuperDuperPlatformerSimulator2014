@@ -35,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Het level waarin je zit.
     private String level = "L1";
 
+    //De achtergrond van het level;
+
     private LevelManager manager = new LevelManager(level);
 	
 	//De constructor
@@ -83,6 +85,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private void draw()
 	{
 
+        BackGround bg = new BackGround("/bg/d7NgV.jpg");
+        bg.create(g2d);
 	}
 
     private void levelUp()
