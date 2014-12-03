@@ -1,19 +1,19 @@
 package com.minegusta.janie177.manager;
 
+import com.minegusta.janie177.Levels.Level;
+
 import java.awt.Graphics2D;
 
-public abstract class LevelManager
+public class LevelManager
 {
-	private String level;
+	private String level = "L1";
 
-    //Lege constructor zodat de abstracte classes geen input nodig hebben.
-    public LevelManager(){}
+    //static method waarmee je iets kan uitvoeren.
 
-	public LevelManager(String level)
-	{
-		this.level = level;
-	}
-	
+    public LevelManager(String level)
+    {
+        this.level = level;
+    }
 	
 	//methods
 
@@ -22,6 +22,7 @@ public abstract class LevelManager
 	{
         Level.valueOf(level).getLevel().draw(g2d);
 	}
+
 
     //Het bewegen van de speler dat voor elk level het zelfde is. Dit gebeurt dus gewoon hier.
 	
