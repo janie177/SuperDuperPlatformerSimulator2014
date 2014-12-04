@@ -1,9 +1,6 @@
 package com.minegusta.janie177;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -17,10 +14,10 @@ import com.minegusta.janie177.manager.LevelManager;
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private int scale = 10;
+	private static int scale = 15;
 	
-	public int height = 60 * scale;
-	public int width = 80 * scale;
+	public static int height = 40 * scale;
+	public static int width = 80 * scale;
 	
 	private Thread thread;
 	
@@ -43,19 +40,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	{
 		//Run de constructor van de super class
 		super();
-		
+
+        //Add key listener.
+        addKeyListener(this);
 		setPreferredSize(new Dimension(width, height));
-		
+
+        setFocusable(true);
+        requestFocus();
+        requestFocusInWindow();
+
 		makeThread();
 		
-		requestFocus();
+
 	}
 	
-	//laad de thread
+	//laad de thread en register de listeners
 	private void makeThread()
 	{
+        //Register het bij het "parent" object.
+        super.addNotify();
+
 		if(thread == null)
 		{
+            //Maak een nieuwe thread al deze nog niet bestaat.
 			thread = new Thread(this);
 		}
 		thread.start();
@@ -64,28 +71,34 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void run() 
 	{
+        System.out.println("Width is " + width);
+        System.out.println("height is" + height);
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d = (Graphics2D) image.getGraphics();
-		
-		//drawing stuff
+
+        BackGround bg = new BackGround()
+
+        //drawing stuff
 		draw();
 		updateScreen();
+
+        //TODO REMOVE
+        g2d.setBackground(Color.RED);
+
+
 		
-		
-		//De thread die zorgt dat er de gewenste FPS is.
+		//Laat de thread slapen om de gewenste FPS te krijgen.
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+    //Doe hier alles qua graphics. Speler en objecten etc etc.
 	private void draw()
 	{
-
-        BackGround bg = new BackGround("/bg/d7NgV.jpg");
-        bg.create(g2d);
+        manager.draw(g2d);
 	}
 
     private void levelUp()
@@ -99,8 +112,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	
 	private void updateScreen()
 	{
-		Graphics g = getGraphics();
-		g.drawImage(image, 0, 0, width, height, null);		
+        Graphics g = getGraphics();
+		g.drawImage(image, width, height, null);
 		g.dispose();
 	}
 

@@ -1,6 +1,6 @@
 package com.minegusta.janie177;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Main {
 	
@@ -8,11 +8,12 @@ public class Main {
 	{
 		//Maak de JFrame, en zet de contentPane
 		
-		JFrame frame = new JFrame("PWS");
-		frame.setContentPane(new GamePanel());
-		frame.setVisible(true);
-		frame.setFocusable(true);
-		frame.setResizable(false);
-		frame.pack();
+		JFrame frame = new JFrame("Super Duper Platformer Simulator 2014");
+        frame.setContentPane(new GamePanel());
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setVisible(true);
+        frame.requestFocus();
 	}
 }

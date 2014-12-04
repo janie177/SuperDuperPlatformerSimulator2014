@@ -4,5 +4,7 @@ import java.awt.*;
 
 public interface LevelModel {
 
+    public void updateBackground(Graphics2D g2d);
+
     public void draw(Graphics2D g2d);
 }

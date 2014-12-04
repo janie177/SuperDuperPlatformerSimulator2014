@@ -28,9 +28,6 @@ public class BackGround
 	
 	public void create(Graphics2D g2d)
 	{
-		g2d.setColor(Color.RED);
-		g2d.drawString(Integer.toString(GamePanel.WIDTH), 50, 50);
-		g2d.drawString(Integer.toString(GamePanel.HEIGHT), 80, 50);
-		g2d.drawImage(backGround, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		g2d.drawImage(backGround, 0, 0, GamePanel.width, GamePanel.height, null);
 	}	
 }
