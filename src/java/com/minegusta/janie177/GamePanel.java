@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import com.minegusta.janie177.Levels.LevelUp;
 import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.manager.LevelManager;
 
@@ -34,8 +35,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
     //Het level waarin je zit.
     private String level = "L1";
-
-    //De achtergrond van het level;
 
     private LevelManager manager = new LevelManager(level);
 	
@@ -73,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 		updateScreen();
 		
 		
-		//Wait for the required FPS
+		//De thread die zorgt dat er de gewenste FPS is.
 		try {
 			Thread.sleep(wait);
 		} catch (InterruptedException e) {
@@ -91,7 +90,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
     private void levelUp()
     {
-        //Zet de level manager hier omhoog. Zet de spelers locatie ook weer op 0.
+        //Zet de level manager hier omhoog naar het volgende level.
+        level = LevelUp.up(level);
+        manager = new LevelManager(level);
     }
 
 
@@ -110,21 +111,23 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
     }
 
+    //Luister hier naar lopen en springen.
     @Override
     public void keyPressed(KeyEvent e)
     {
         switch(e.getKeyChar())
         {
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_A: manager.moveLeft(g2d);
                 break;
-            case KeyEvent.VK_S:
+            case KeyEvent.VK_S: manager.moveDown(g2d);
                 break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_D: manager.moveRight(g2d);
                 break;
-            case KeyEvent.VK_W:
+            case KeyEvent.VK_W: manager.moveUp(g2d);
+                break;
+            case KeyEvent.VK_SPACE: manager.moveUp(g2d);
                 break;
         }
-
     }
 
     @Override
