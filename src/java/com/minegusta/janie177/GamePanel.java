@@ -22,7 +22,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private Thread thread;
 	
 	private Image image;
-	
+
+    private boolean aan = false;
+
 	private Graphics2D g2d;
 	
 	private int fps = 30;
@@ -40,6 +42,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	{
 		//Run de constructor van de super class
 		super();
+
+        aan = true;
 
         //Add key listener.
         addKeyListener(this);
@@ -71,28 +75,30 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void run() 
 	{
-        System.out.println("Width is " + width);
-        System.out.println("height is" + height);
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		g2d = (Graphics2D) image.getGraphics();
-
-        BackGround bg = new BackGround()
-
-        //drawing stuff
-		draw();
-		updateScreen();
-
-        //TODO REMOVE
-        g2d.setBackground(Color.RED);
+        while(aan) {
+            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            g2d = (Graphics2D) image.getGraphics();
 
 
-		
-		//Laat de thread slapen om de gewenste FPS te krijgen.
-		try {
-			Thread.sleep(wait);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+            //Teken methode voor de wereld. Wordt doorgegeven aan de level class.
+            //draw();
+
+            g2d.setColor(Color.RED);
+            g2d.setBackground(Color.RED);
+            g2d.drawString("Lolol", 40, 40);
+
+            //Tekent het uiteindelijke resultaat op het scherm.
+            updateScreen();
+
+
+
+            //Laat de thread slapen om de gewenste FPS te krijgen.
+            try {
+                Thread.sleep(wait);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 	}
 
     //Doe hier alles qua graphics. Speler en objecten etc etc.
