@@ -16,7 +16,7 @@ public class RenderSpeler
     public void render(Graphics2D g2d)
     {
         this.g2d = g2d;
-        boolean jump = PlayerLocation.getY() > y;
+        boolean jump = PlayerLocation.getY() < y;
 
         if(PlayerLocation.getX() > x)
         {
@@ -99,6 +99,6 @@ public class RenderSpeler
 
     private void draw()
     {
-        g2d.drawImage(speler, GamePanel.width / 2, GamePanel.height - PlayerLocation.getY() + 50, null);
+        g2d.drawImage(speler, 300, PlayerLocation.getY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
     }
 }

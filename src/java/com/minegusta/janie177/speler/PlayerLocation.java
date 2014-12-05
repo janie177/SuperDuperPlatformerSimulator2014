@@ -1,5 +1,7 @@
 package com.minegusta.janie177.speler;
 
+import com.minegusta.janie177.GamePanel;
+
 public class PlayerLocation
 {
     public PlayerLocation()
@@ -21,7 +23,9 @@ public class PlayerLocation
             moveDown();
         }
     }
-    private static int locY = 0;
+    private static int gameHeight = GamePanel.height;
+
+    private static int locY = gameHeight - 150;
     //X locatie, minimaal 3 zodat de achtergrond het blijft doen.
     private static int locX = 15;
 
@@ -34,22 +38,22 @@ public class PlayerLocation
 
     private static void moveUp()
     {
-        locY = locY + 3;
+        locY = locY - 6;
     }
 
     private static void moveDown()
     {
-        locY = locY - 3;
-        if(locY < 0)locY = 0;
+        locY = locY + 6;
+        if(locY > gameHeight - 150)locY = gameHeight - 150;
     }
     private static void moveLeft()
     {
-        locX = locX - 3;
+        locX = locX - 6;
         if(locX < 15)locX = 15;
     }
     private static void moveRight()
     {
-        locX = locX + 3;
+        locX = locX + 6;
     }
 
 
