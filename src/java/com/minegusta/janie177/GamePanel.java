@@ -11,13 +11,14 @@ import javax.swing.*;
 import com.minegusta.janie177.Levels.LevelUp;
 import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.manager.LevelManager;
+import com.minegusta.janie177.manager.PlayerLocation;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
     //-- Alle informatie die belangrijk is voor het scherm zelf --//
 
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private static int scale = 10;
+	private static int scale = 15;
 	public static int height = 60 * scale;
 	public static int width = 80 * scale;
 	private Thread thread = null;
@@ -31,16 +32,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     private String level = "L1";
     private LevelManager manager = new LevelManager(level);
 
-    //-- Alle informatie die de locatie van de speler bepaald.
-    public static int locX = 1;
-    public static int locY = 0;
-
 	//De constructor
 	public GamePanel()
     {
-        //Voeg deze class toe als keylistener
-        addKeyListener(this);
-
 		setPreferredSize(new Dimension(width, height));
 
         setVisible(true);
@@ -62,6 +56,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             //Maak een nieuwe thread als deze nog niet bestaat.
 			thread = new Thread(this);
 		}
+        //Voeg deze class toe als keylistener
+        addKeyListener(this);
         aan = true;
 		thread.start();
 	}
@@ -70,12 +66,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	public void run() 
 	{
 
-        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        g2d = (Graphics2D) image.getGraphics();
-        g2d.setColor(Color.BLUE);
-
         while(aan)
         {
+            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            g2d = (Graphics2D) image.getGraphics();
+
             //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
             draw();
 
@@ -94,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Doe hier alles qua graphics. Speler en objecten etc etc.
 	private void draw()
 	{
-        manager.draw(g2d, locX);
+        manager.draw(g2d);
 	}
 
     private void levelUp()
@@ -114,31 +109,33 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Luister naar keys die ingedrukt worden.
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
+    public void keyTyped(KeyEvent e)
+    {
     }
 
     //Luister hier naar lopen en springen.
     @Override
     public void keyPressed(KeyEvent e)
     {
-        switch(e.getKeyChar())
+        switch(e.getKeyCode())
         {
-            case KeyEvent.VK_A: manager.moveLeft(g2d);
+            case KeyEvent.VK_A: manager.moveLeft();
                 break;
-            case KeyEvent.VK_S: manager.moveDown(g2d);
+            case KeyEvent.VK_S: manager.moveDown();
                 break;
-            case KeyEvent.VK_D: manager.moveRight(g2d);
+            case KeyEvent.VK_D:
+            {
+                manager.moveRight();
+            }
+            break;
+            case KeyEvent.VK_W: manager.moveUp();
                 break;
-            case KeyEvent.VK_W: manager.moveUp(g2d);
-                break;
-            case KeyEvent.VK_SPACE: manager.moveUp(g2d);
+            case KeyEvent.VK_SPACE: manager.moveUp();
                 break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 }

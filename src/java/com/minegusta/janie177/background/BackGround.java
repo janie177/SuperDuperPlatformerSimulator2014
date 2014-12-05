@@ -6,17 +6,18 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.manager.PlayerLocation;
 
 public class BackGround 
 {
-    private static int width = GamePanel.width - 12;
+    private static int width = GamePanel.width;
 	private BufferedImage layer1;
     private BufferedImage layer2;
     private BufferedImage layer3;
     private Graphics2D g;
     private int playerLocation;
 	
-	public BackGround(String path, String path2, String path3, int x)
+	public BackGround(String path, String path2, String path3)
 	{
 		try{
 			this.layer1 = ImageIO.read(getClass().getResourceAsStream(path));
@@ -36,24 +37,39 @@ public class BackGround
         {
             e.printStackTrace();
         }
-        this.playerLocation = x;
+        this.playerLocation = PlayerLocation.getX();
 	}
 	
 	public void update(Graphics2D g2d)
 	{
         this.g = g2d;
-        double x1 = 0 - (width % playerLocation);
-        double x2 = x1 + width;
-        double x3 = x2 + width;
 
-        BufferedImage[] layers = {layer1, layer2, layer3};
+        int x1 = 0 - ((playerLocation / 3) % width);
+        int x2 = x1 + width;
+        int x3 = x2 + width;
 
-        for(BufferedImage img : layers)
-        {
-            draw(img, (int) x1);
-            draw(img, (int) x2);
-            draw(img, (int) x3);
-        }
+        //Langzame achtergrond laag
+        draw(layer3, x1);
+        draw(layer3, x2);
+        draw(layer3, x3);
+
+        x1 = 0 - ((playerLocation / 2) % width);
+        x2 = x1 + width;
+        x3 = x2 + width;
+
+        //Middelste langzamere laag.
+        draw(layer2, x1);
+        draw(layer2, x2);
+        draw(layer2, x3);
+
+        x1 = 0 - (playerLocation % width);
+        x2 = x1 + width;
+        x3 = x2 + width;
+
+        //Snelle voorste laag
+        draw(layer1, x1);
+        draw(layer1, x2);
+        draw(layer1, x3);
     }
 
     private void draw(BufferedImage layer, int x)
