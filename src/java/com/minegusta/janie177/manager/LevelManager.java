@@ -20,9 +20,9 @@ public class LevelManager
     private LevelModel lm = Level.valueOf(level).getLevel();
 
     //Teken de obstakels en monsters die per level weer verschillen.
-	public void draw(Graphics2D g2d)
+	public void draw(Graphics2D g2d, int x)
 	{
-        lm.updateBackground(g2d);
+        lm.updateBackground(g2d, x);
         lm.draw(g2d);
 	}
 

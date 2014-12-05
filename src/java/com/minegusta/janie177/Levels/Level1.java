@@ -8,10 +8,9 @@ import com.minegusta.janie177.background.BackGround;
 
 public class Level1 implements LevelModel
 {
-    private static BackGround bg = new BackGround("/bg/a.gif");
-
-    public void updateBackground(Graphics2D g2d)
+    public void updateBackground(Graphics2D g2d,int x)
     {
+        BackGround bg = new BackGround("/bg/a.gif", "/bg/a.gif", "/bg/a.gif", x);
         bg.update(g2d);
     }
 

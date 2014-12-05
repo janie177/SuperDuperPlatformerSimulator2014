@@ -32,8 +32,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     private LevelManager manager = new LevelManager(level);
 
     //-- Alle informatie die de locatie van de speler bepaald.
-    public static int locX = 20;
-    public static int locY = 5;
+    public static int locX = 1;
+    public static int locY = 0;
 
 	//De constructor
 	public GamePanel()
@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Doe hier alles qua graphics. Speler en objecten etc etc.
 	private void draw()
 	{
-        manager.draw(g2d);
+        manager.draw(g2d, locX);
 	}
 
     private void levelUp()
