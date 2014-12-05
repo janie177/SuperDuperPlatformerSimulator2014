@@ -2,7 +2,6 @@ package com.minegusta.janie177.Levels;
 
 import java.awt.*;
 
-import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.background.BackGround;
 
 public class Level1 implements LevelModel
@@ -15,8 +14,8 @@ public class Level1 implements LevelModel
 
     public void draw(Graphics2D g2d)
 	{
-		g2d.setColor(Color.RED);
-        g2d.setFont(new Font("Arial", Font.BOLD, 20));
-        g2d.drawString("Super Duper Platformer Simulator 2014", 250, GamePanel.height / 4);
+
+
+
 	}
 }

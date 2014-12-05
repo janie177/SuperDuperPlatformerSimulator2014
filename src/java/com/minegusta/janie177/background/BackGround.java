@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.minegusta.janie177.GamePanel;
-import com.minegusta.janie177.manager.PlayerLocation;
+import com.minegusta.janie177.speler.PlayerLocation;
 
 public class BackGround 
 {

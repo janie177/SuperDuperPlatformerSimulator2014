@@ -5,13 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import com.minegusta.janie177.Levels.LevelUp;
-import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.manager.LevelManager;
-import com.minegusta.janie177.manager.PlayerLocation;
+import com.minegusta.janie177.speler.PlayerLocation;
+import com.minegusta.janie177.speler.RenderSpeler;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
@@ -24,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private Thread thread = null;
 	private Image image;
     private boolean aan = false;
+    private long loopinterval = 0; //Cooldown op lopen in ms
 	private Graphics2D g2d;
 	private int fps = 30;
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
@@ -65,7 +65,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void run() 
 	{
-
         while(aan)
         {
             image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -73,6 +72,18 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
             //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
             draw();
+
+            //Check voor lopen
+            loopinterval = loopinterval + wait;
+            if(loopinterval >= 4)
+            {
+                loopinterval = 0;
+                new PlayerLocation();
+            }
+
+            //Teken de speler voor de objecten zodat deze altijd zichtbaar is.
+            RenderSpeler r = new RenderSpeler();
+            r.render(g2d);
 
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
@@ -119,23 +130,64 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     {
         switch(e.getKeyCode())
         {
-            case KeyEvent.VK_A: manager.moveLeft();
+            case KeyEvent.VK_A:
+            {
+                PlayerLocation.setLinks(true);
+            }
                 break;
-            case KeyEvent.VK_S: manager.moveDown();
+            case KeyEvent.VK_S:
+            {
+                PlayerLocation.setDown(true);
+            }
                 break;
             case KeyEvent.VK_D:
             {
-                manager.moveRight();
+                PlayerLocation.setRechts(true);
             }
-            break;
-            case KeyEvent.VK_W: manager.moveUp();
                 break;
-            case KeyEvent.VK_SPACE: manager.moveUp();
+            case KeyEvent.VK_W:
+            {
+                PlayerLocation.setUp(true);
+            }
+                break;
+            case KeyEvent.VK_SPACE:
+            {
+                PlayerLocation.setUp(true);
+            }
                 break;
         }
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e)
+    {
+        switch(e.getKeyCode())
+        {
+            case KeyEvent.VK_A:
+            {
+                PlayerLocation.setLinks(false);
+            }
+            break;
+            case KeyEvent.VK_S:
+            {
+                PlayerLocation.setDown(false);
+            }
+            break;
+            case KeyEvent.VK_D:
+            {
+                PlayerLocation.setRechts(false);
+            }
+            break;
+            case KeyEvent.VK_W:
+            {
+                PlayerLocation.setUp(false);
+            }
+            break;
+            case KeyEvent.VK_SPACE:
+            {
+                PlayerLocation.setUp(false);
+            }
+            break;
+        }
     }
 }
