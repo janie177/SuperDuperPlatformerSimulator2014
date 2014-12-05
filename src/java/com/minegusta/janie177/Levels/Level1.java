@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.logging.Level;
 
 import com.minegusta.janie177.background.BackGround;
-import com.minegusta.janie177.manager.LevelManager;
 
 public class Level1 implements LevelModel
 {

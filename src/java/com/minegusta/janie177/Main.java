@@ -9,8 +9,8 @@ public class Main {
 		//Maak de JFrame, en zet de contentPane
 		
 		JFrame frame = new JFrame("Super Duper Platformer Simulator 2014");
-        frame.setContentPane(new GamePanel());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setContentPane(new GamePanel());
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);

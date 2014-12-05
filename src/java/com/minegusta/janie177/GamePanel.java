@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import com.minegusta.janie177.Levels.LevelUp;
 import com.minegusta.janie177.background.BackGround;
@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	public static int height = 40 * scale;
 	public static int width = 80 * scale;
 	
-	private Thread thread;
+	private Thread thread = null;
 	
 	private Image image;
 
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private int fps = 30;
 	
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
-	private long wait = fps/1000;
+	private long wait = 1000/fps;
 
     //Het level waarin je zit.
     private String level = "L1";
@@ -40,39 +40,41 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	
 	//De constructor
 	public GamePanel()
-	{
-		//Run de constructor van de super class
-		super();
+    {
+        //Voeg deze class toe als keylistener
+        addKeyListener(this);
+
 		setPreferredSize(new Dimension(width, height));
+
+        setVisible(true);
+
         setFocusable(true);
+
         requestFocus();
+
+        makeThread();
 	}
 	
-	//laad de thread en register de listeners met deze standaard naam (addnotify).
-	public void addNotify()
-	{
-        //Register het bij het "parent" object.
-        super.addNotify();
+	//begin de thread.
 
+	private void makeThread()
+	{
 		if(thread == null)
 		{
             //Maak een nieuwe thread als deze nog niet bestaat.
 			thread = new Thread(this);
-            //Voeg deze class toe als keylistener
-            addKeyListener(this);
 		}
+        aan = true;
 		thread.start();
 	}
 	
 	@Override
 	public void run() 
 	{
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        g2d = (Graphics2D) image.getGraphics();
         while(aan)
         {
-            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            g2d = (Graphics2D) image.getGraphics();
-
-
             //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
             draw();
 
@@ -104,11 +106,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private void updateScreen()
     {
-        Graphics g = getGraphics();
-        g.drawImage(image, width, height, null);
-        g.setColor(Color.RED);
-        g.drawString("lolol", 30, 30);
-        g.dispose();
+        getGraphics().drawImage(image, width, height, null);
     }
 
     //Luister naar keys die ingedrukt worden.
