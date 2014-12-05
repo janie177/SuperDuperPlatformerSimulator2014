@@ -9,7 +9,7 @@ public class LevelUp
      */
     public static String up(String level)
     {
-        int newLevel = Integer.parseInt(level.replace("L", ""));
+        int newLevel = Integer.parseInt(level.replace("L", "")) + 1;
         return "L" + Integer.toString(newLevel);
     }
 }
