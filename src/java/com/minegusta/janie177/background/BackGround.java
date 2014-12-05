@@ -1,6 +1,5 @@
 package com.minegusta.janie177.background;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -22,7 +21,7 @@ public class BackGround
 		}
 	}
 	
-	public void create(Graphics2D g2d)
+	public void update(Graphics2D g2d)
 	{
 		g2d.drawImage(backGround, 0, 0, GamePanel.width, GamePanel.height, null);
 	}	

@@ -14,30 +14,27 @@ import com.minegusta.janie177.manager.LevelManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {
+    //-- Alle informatie die belangrijk is voor het scherm zelf --//
+
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private static int scale = 15;
-	
-	public static int height = 40 * scale;
+	private static int scale = 10;
+	public static int height = 60 * scale;
 	public static int width = 80 * scale;
-	
 	private Thread thread = null;
-	
 	private Image image;
-
     private boolean aan = false;
-
 	private Graphics2D g2d;
-	
 	private int fps = 30;
-	
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
 	private long wait = 1000/fps;
-
     //Het level waarin je zit.
     private String level = "L1";
-
     private LevelManager manager = new LevelManager(level);
-	
+
+    //-- Alle informatie die de locatie van de speler bepaald.
+    public static int locX = 20;
+    public static int locY = 5;
+
 	//De constructor
 	public GamePanel()
     {
@@ -97,15 +94,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Doe hier alles qua graphics. Speler en objecten etc etc.
 	private void draw()
 	{
-        BufferedImage img = null;
-        try{
-            img = ImageIO.read(getClass().getResourceAsStream("/bg/a.gif"));
-        } catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        g2d.drawImage(img, 0, 0 , width, height, null);
-        //manager.draw(g2d);
+        manager.draw(g2d);
 	}
 
     private void levelUp()
@@ -118,9 +107,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private void updateScreen()
     {
-        Graphics g = getGraphics();
-        g.drawImage(image, width, height, null);
-        g.dispose();
+        getGraphics().drawImage(image, 0, 0, null);
+        getGraphics().dispose();
     }
 
     //Luister naar keys die ingedrukt worden.
