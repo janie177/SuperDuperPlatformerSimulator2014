@@ -17,6 +17,7 @@ public class Level1 implements LevelModel
     public void draw(Graphics2D g2d)
 	{
 		g2d.setColor(Color.RED);
+        g2d.setFont(new Font("Arial", Font.PLAIN, 5));
         g2d.drawString("Lololol", 20, 40);
 	}
 }

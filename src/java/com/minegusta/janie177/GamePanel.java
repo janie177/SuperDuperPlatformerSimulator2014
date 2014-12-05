@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         requestFocus();
 
         makeThread();
+        setVisible(true);
 	}
 	
 	//begin de thread.
@@ -71,8 +72,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void run() 
 	{
+
         image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         g2d = (Graphics2D) image.getGraphics();
+        g2d.setColor(Color.BLUE);
+
         while(aan)
         {
             //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
@@ -93,7 +97,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //Doe hier alles qua graphics. Speler en objecten etc etc.
 	private void draw()
 	{
-        manager.draw(g2d);
+        BufferedImage img = null;
+        try{
+            img = ImageIO.read(getClass().getResourceAsStream("/bg/a.gif"));
+        } catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        g2d.drawImage(img, 0, 0 , width, height, null);
+        //manager.draw(g2d);
 	}
 
     private void levelUp()
@@ -106,7 +118,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private void updateScreen()
     {
-        getGraphics().drawImage(image, width, height, null);
+        Graphics g = getGraphics();
+        g.drawImage(image, width, height, null);
+        g.dispose();
     }
 
     //Luister naar keys die ingedrukt worden.
