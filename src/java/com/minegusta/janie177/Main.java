@@ -14,6 +14,5 @@ public class Main {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
-        frame.requestFocus();
 	}
 }

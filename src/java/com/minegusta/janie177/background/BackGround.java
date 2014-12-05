@@ -10,10 +10,6 @@ import com.minegusta.janie177.GamePanel;
 
 public class BackGround 
 {
-	
-	//Call this class when making a new screen. the BG should always stay the same
-	//since it's a gif.
-	
 	private BufferedImage backGround;
 	
 	public BackGround(String path)

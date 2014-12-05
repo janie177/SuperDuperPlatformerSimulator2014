@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import com.minegusta.janie177.Levels.LevelUp;
@@ -42,32 +43,23 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	{
 		//Run de constructor van de super class
 		super();
-
-        aan = true;
-
-        //Add key listener.
-        addKeyListener(this);
 		setPreferredSize(new Dimension(width, height));
-
         setFocusable(true);
         requestFocus();
-        requestFocusInWindow();
-
-		makeThread();
-		
-
 	}
 	
-	//laad de thread en register de listeners
-	private void makeThread()
+	//laad de thread en register de listeners met deze standaard naam (addnotify).
+	public void addNotify()
 	{
         //Register het bij het "parent" object.
         super.addNotify();
 
 		if(thread == null)
 		{
-            //Maak een nieuwe thread al deze nog niet bestaat.
+            //Maak een nieuwe thread als deze nog niet bestaat.
 			thread = new Thread(this);
+            //Voeg deze class toe als keylistener
+            addKeyListener(this);
 		}
 		thread.start();
 	}
@@ -75,22 +67,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	@Override
 	public void run() 
 	{
-        while(aan) {
+        while(aan)
+        {
             image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             g2d = (Graphics2D) image.getGraphics();
 
 
-            //Teken methode voor de wereld. Wordt doorgegeven aan de level class.
-            //draw();
-
-            g2d.setColor(Color.RED);
-            g2d.setBackground(Color.RED);
-            g2d.drawString("Lolol", 40, 40);
+            //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
+            draw();
 
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
-
-
 
             //Laat de thread slapen om de gewenste FPS te krijgen.
             try {
@@ -115,13 +102,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     }
 
 
-	
 	private void updateScreen()
-	{
+    {
         Graphics g = getGraphics();
-		g.drawImage(image, width, height, null);
-		g.dispose();
-	}
+        g.drawImage(image, width, height, null);
+        g.setColor(Color.RED);
+        g.drawString("lolol", 30, 30);
+        g.dispose();
+    }
 
     //Luister naar keys die ingedrukt worden.
 
