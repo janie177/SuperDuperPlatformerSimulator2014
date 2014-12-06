@@ -1,5 +1,6 @@
 package com.minegusta.janie177.speler;
 
+import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.animation.AnimatedSprite;
 
 import javax.imageio.ImageIO;
@@ -57,7 +58,7 @@ public class RenderSpeler
         try {
             int max = 4;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springlinks.png")));
-            speler = animation.getFrame(getFromMap(SpelerAcie.UP, max));
+            speler = animation.getFrame(getFromMap(SpelerAcie.JUMPLEFT, max));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -69,7 +70,7 @@ public class RenderSpeler
         try {
             int max = 4;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springrechts.png")));
-            speler = animation.getFrame(getFromMap(SpelerAcie.UP, max));
+            speler = animation.getFrame(getFromMap(SpelerAcie.JUMPRIGHT, max));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -81,7 +82,7 @@ public class RenderSpeler
         try {
             int max = 5;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/links.png")));
-            speler = animation.getFrame(getFromMap(SpelerAcie.UP, max));
+            speler = animation.getFrame(getFromMap(SpelerAcie.LEFT, max));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -93,7 +94,7 @@ public class RenderSpeler
         try {
             int max = 5;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")));
-            speler = animation.getFrame(getFromMap(SpelerAcie.UP, max));
+            speler = animation.getFrame(getFromMap(SpelerAcie.RIGHT, max));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -104,9 +105,9 @@ public class RenderSpeler
     {
         try
         {
-            int max = 2;
+            int max = 3;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")));
-            speler = animation.getFrame(getFromMap(SpelerAcie.UP, max));
+            speler = animation.getFrame(getFromMap(SpelerAcie.IDLE, max));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -118,8 +119,7 @@ public class RenderSpeler
 
     private void draw()
     {
-
-        g2d.drawImage(speler, 300, PlayerLocation.getY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
+        g2d.drawImage(speler, GamePanel.width / 2 - 40, PlayerLocation.getY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
     }
 
     private int getFromMap(SpelerAcie actie, int max)
