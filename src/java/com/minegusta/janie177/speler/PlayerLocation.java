@@ -1,6 +1,7 @@
 package com.minegusta.janie177.speler;
 
 import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.util.Location;
 
 public class PlayerLocation
 {
@@ -23,11 +24,8 @@ public class PlayerLocation
             moveDown();
         }
     }
-    private static int gameHeight = GamePanel.height;
 
-    private static int locY = gameHeight - 150;
-    //X locatie, minimaal 3 zodat de achtergrond het blijft doen.
-    private static int locX = 15;
+    private static Location location = new Location(15, 30);
 
 
     //-- Bewegen --//
@@ -35,38 +33,45 @@ public class PlayerLocation
     private static boolean rechts = false;
     private static boolean jumping = false;
     private static boolean down = false;
+    private static boolean sprint = false;
+    private static int speed = 9;
 
     private static void moveUp()
     {
-        locY = locY - 9;
+        location.setY(location.getY() + speed);
     }
 
     private static void moveDown()
     {
-        locY = locY + 9;
-        if(locY > gameHeight - 150)locY = gameHeight - 150;
+        location.setY(location.getY() - speed);
+        if(location.getY() < 0) location.setY(0);
     }
     private static void moveLeft()
     {
-        locX = locX - 9;
-        if(locX < 15)locX = 15;
+        location.setX(location.getX() - speed);
+        if(location.getX() < 15) location.setX(15);
     }
     private static void moveRight()
     {
-        locX = locX + 9;
+        location.setX(location.getX() + speed);
     }
-
-
 
     //-- Het krijgen van de locatie --//
-    public static int getX()
-    {
-        return locX;
-    }
+    public static int getX(){ return location.getX(); }
 
     public static int getY()
     {
-        return locY;
+        return location.getY();
+    }
+
+    public static Location getLocation()
+    {
+        return location;
+    }
+
+    public static int getRenderedY()
+    {
+        return location.getRenderedY();
     }
 
     public static void setLinks(boolean b)

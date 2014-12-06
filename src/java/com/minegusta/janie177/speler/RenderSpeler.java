@@ -22,7 +22,7 @@ public class RenderSpeler
     public void render(Graphics2D g2d)
     {
         this.g2d = g2d;
-        boolean jump = PlayerLocation.getY() < y;
+        boolean jump = PlayerLocation.getY() > y;
 
         if(PlayerLocation.getX() > x)
         {
@@ -57,7 +57,7 @@ public class RenderSpeler
     {
         try {
             int max = 4;
-            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springlinks.png")));
+            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springlinks.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.JUMPLEFT, max));
         } catch (Exception e)
         {
@@ -69,7 +69,7 @@ public class RenderSpeler
     {
         try {
             int max = 4;
-            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springrechts.png")));
+            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springrechts.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.JUMPRIGHT, max));
         } catch (Exception e)
         {
@@ -81,7 +81,7 @@ public class RenderSpeler
     {
         try {
             int max = 5;
-            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/links.png")));
+            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/links.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.LEFT, max));
         } catch (Exception e)
         {
@@ -93,7 +93,7 @@ public class RenderSpeler
     {
         try {
             int max = 5;
-            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")));
+            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.RIGHT, max));
         } catch (Exception e)
         {
@@ -106,7 +106,7 @@ public class RenderSpeler
         try
         {
             int max = 3;
-            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")));
+            AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.IDLE, max));
         } catch (Exception e)
         {
@@ -119,7 +119,7 @@ public class RenderSpeler
 
     private void draw()
     {
-        g2d.drawImage(speler, GamePanel.width / 2 - 40, PlayerLocation.getY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
+        g2d.drawImage(speler, GamePanel.width / 2 - 40, PlayerLocation.getRenderedY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
     }
 
     private int getFromMap(SpelerAcie actie, int max)
