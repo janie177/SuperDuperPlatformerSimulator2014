@@ -8,16 +8,18 @@ import java.awt.Graphics2D;
 public class LevelManager
 {
 	private String level = "L1";
+    private LevelModel lm;
 
     //De constructor waarmee het level wordt bepaald.
 
     public LevelManager(String level)
     {
         this.level = level;
+        this.lm = Level.valueOf(level).getLevel();
     }
 	
 	//De level class die van toepassing is op deze instance
-    private LevelModel lm = Level.valueOf(level).getLevel();
+
 
     //Teken de obstakels en monsters die per level weer verschillen.
 	public void draw(Graphics2D g2d)

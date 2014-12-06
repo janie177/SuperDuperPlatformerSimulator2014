@@ -1,6 +1,6 @@
 package com.minegusta.janie177.background;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -44,36 +44,28 @@ public class BackGround
 	{
         this.g = g2d;
 
-        int x1 = 0 - ((playerLocation / 3) % width);
-        int x2 = x1 + width;
-        int x3 = x2 + width;
+        //Alle laged op volgorde van achteren naar voren.
+        BufferedImage[] layers = {layer3, layer2, layer1};
+        int speed = 0;
 
-        //Langzame achtergrond laag
-        draw(layer3, x1);
-        draw(layer3, x2);
-        draw(layer3, x3);
+        for(BufferedImage img : layers)
+        {
+            double scale =  GamePanel.height / img.getHeight();
+            Image scaled = img.getScaledInstance((int)(scale * img.getWidth()), (int) scale * img.getHeight(), Image.SCALE_DEFAULT);
+            width = (int) scale * img.getWidth();
 
-        x1 = 0 - ((playerLocation / 2) % width);
-        x2 = x1 + width;
-        x3 = x2 + width;
-
-        //Middelste langzamere laag.
-        draw(layer2, x1);
-        draw(layer2, x2);
-        draw(layer2, x3);
-
-        x1 = 0 - (playerLocation % width);
-        x2 = x1 + width;
-        x3 = x2 + width;
-
-        //Snelle voorste laag
-        draw(layer1, x1);
-        draw(layer1, x2);
-        draw(layer1, x3);
+            int x1 = 0 - (playerLocation / (3 - speed) % width);
+            int x2 = x1 + width;
+            int x3 = x2 + width;
+            draw(scaled, x1, width);
+            draw(scaled, x2, width);
+            draw(scaled, x3, width);
+            speed++;
+        }
     }
 
-    private void draw(BufferedImage layer, int x)
+    private void draw(Image layer, int start, int width)
     {
-        g.drawImage(layer, x, 0, GamePanel.width, GamePanel.height, null);
+        g.drawImage(layer, start, 0, width, GamePanel.height, null);
     }
 }

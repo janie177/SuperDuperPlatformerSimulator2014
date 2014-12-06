@@ -81,10 +81,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
                 new PlayerLocation();
             }
 
-            //Teken de sprites.speler voor de objecten zodat deze altijd zichtbaar is.
-            RenderSpeler r = new RenderSpeler();
-            r.render(g2d);
-
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
 
