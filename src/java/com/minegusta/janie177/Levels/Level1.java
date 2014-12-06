@@ -7,13 +7,14 @@ import com.minegusta.janie177.speler.RenderSpeler;
 
 public class Level1 implements LevelModel
 {
-    private static BackGround bg;
+    private BackGround bg;
     public Level1()
     {
-        this.bg = new BackGround("/sprites/bg/bomen2.png", "/sprites/bg/2.png", "/sprites/bg/test/1.jpg");
+        this.bg = new BackGround("/sprites/bg/bos.png", "/sprites/bg/bos.png", "/sprites/bg/3.png");
     }
     public void updateBackground(Graphics2D g2d)
     {
+        g2d.setBackground(Color.BLUE);
         bg.update(g2d);
     }
 
@@ -22,6 +23,5 @@ public class Level1 implements LevelModel
         //Teken de speler voor de objecten zodat deze altijd zichtbaar is.
         RenderSpeler r = new RenderSpeler();
         r.render(g2d);
-
 	}
 }

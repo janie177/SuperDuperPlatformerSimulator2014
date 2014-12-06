@@ -37,11 +37,11 @@ public class BackGround
         {
             e.printStackTrace();
         }
-        this.playerLocation = PlayerLocation.getX();
 	}
 	
 	public void update(Graphics2D g2d)
 	{
+        this.playerLocation = PlayerLocation.getX();
         this.g = g2d;
 
         //Alle laged op volgorde van achteren naar voren.

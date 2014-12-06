@@ -38,22 +38,22 @@ public class PlayerLocation
 
     private static void moveUp()
     {
-        locY = locY - 6;
+        locY = locY - 9;
     }
 
     private static void moveDown()
     {
-        locY = locY + 6;
+        locY = locY + 9;
         if(locY > gameHeight - 150)locY = gameHeight - 150;
     }
     private static void moveLeft()
     {
-        locX = locX - 6;
+        locX = locX - 9;
         if(locX < 15)locX = 15;
     }
     private static void moveRight()
     {
-        locX = locX + 6;
+        locX = locX + 9;
     }
 
 

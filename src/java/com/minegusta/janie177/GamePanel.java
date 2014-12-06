@@ -23,9 +23,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private Thread thread = null;
 	private Image image;
     private boolean aan = false;
-    private long loopinterval = 0; //Cooldown op lopen in ms
 	private Graphics2D g2d;
-	private int fps = 30;
+	private int fps = 60;
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
 	private long wait = 1000/fps;
     //Het level waarin je zit.
@@ -74,12 +73,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             draw();
 
             //Check voor lopen
-            loopinterval = loopinterval + wait;
-            if(loopinterval >= 4)
-            {
-                loopinterval = 0;
-                new PlayerLocation();
-            }
+            new PlayerLocation();
 
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
