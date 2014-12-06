@@ -2,6 +2,8 @@ package com.minegusta.janie177.speler;
 
 import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.animation.AnimatedSprite;
+import com.minegusta.janie177.animation.Render;
+import com.minegusta.janie177.manager.ScreenLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -115,11 +117,11 @@ public class RenderSpeler
     }
 
 
-    //Private methods. Deze worden hierboven alleen binnen deze klas gebruikt. Ze updaten de frames en tekenen het speler object.
+    //Private methods. Deze worden hierboven alleen binnen deze class gebruikt. Ze updaten de frames en tekenen het speler object.
 
     private void draw()
     {
-        g2d.drawImage(speler, GamePanel.width / 2 - 40, PlayerLocation.getRenderedY(), speler.getWidth() * 5, speler.getHeight() * 5,  null);
+        Render.renderInWorld(g2d, speler, 0, PlayerLocation.getRenderedY(), 5);
     }
 
     private int getFromMap(SpelerAcie actie, int max)

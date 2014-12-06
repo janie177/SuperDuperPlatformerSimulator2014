@@ -1,6 +1,5 @@
 package com.minegusta.janie177.speler;
 
-import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.util.Location;
 
 public class PlayerLocation
@@ -35,16 +34,17 @@ public class PlayerLocation
     private static boolean down = false;
     private static boolean sprint = false;
     private static int speed = 9;
+    private static int jumpSpeed = 18;
 
     private static void moveUp()
     {
-        location.setY(location.getY() + speed);
+        location.setY(location.getY() + jumpSpeed);
         if(location.getY() > 700)location.setY(700);
     }
 
     private static void moveDown()
     {
-        location.setY(location.getY() - speed);
+        location.setY(location.getY() - jumpSpeed);
         if(location.getY() < 180) location.setY(180);
     }
     private static void moveLeft()

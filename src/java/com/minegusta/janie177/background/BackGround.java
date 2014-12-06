@@ -6,7 +6,9 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.manager.ScreenLocation;
 import com.minegusta.janie177.speler.PlayerLocation;
+import javafx.stage.Screen;
 
 public class BackGround 
 {
@@ -41,7 +43,7 @@ public class BackGround
 	
 	public void update(Graphics2D g2d)
 	{
-        this.playerLocation = PlayerLocation.getX();
+        this.playerLocation = ScreenLocation.getCenter();
         this.g = g2d;
 
         //Alle laged op volgorde van achteren naar voren.

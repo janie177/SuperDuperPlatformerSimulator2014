@@ -1,6 +1,8 @@
 package com.minegusta.janie177.wezens;
 
 import com.minegusta.janie177.animation.AnimatedSprite;
+import com.minegusta.janie177.animation.Render;
+import com.minegusta.janie177.manager.ScreenLocation;
 import com.minegusta.janie177.util.Location;
 
 import javax.imageio.ImageIO;
@@ -18,16 +20,20 @@ public abstract class LevendWezen
     private boolean lopend;
     private int frame = 1;
     private int scale;
+    private int speed;
     boolean forward = false;
+    private int distanceBetweenFrames;
 
-    public LevendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale)
+    public LevendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed)
     {
         this.health = health;
         this.origin = origin;
         this.radius = radius;
         this.scale = scale;
         this.lopend = lopend;
+        this.speed = speed;
         this.frames = frames;
+        this.distanceBetweenFrames = distanceBetweenFrames;
         this.location = origin;
 
         //probeer de image te laden
@@ -61,19 +67,21 @@ public abstract class LevendWezen
         if(lopend) {
             if (Math.abs(origin.getX() - location.getX()) >= radius) forward = !forward;
             if (forward) {
-                location = new Location(location.getX() + 1, location.getY());
+                location = new Location(location.getX() + speed, location.getY());
             } else
             {
-                location = new Location(location.getX() - 1, location.getY());
+                location = new Location(location.getX() - speed, location.getY());
             }
         }
-        AnimatedSprite animation = new AnimatedSprite(image, frames);
+        AnimatedSprite animation = new AnimatedSprite(image, distanceBetweenFrames);
 
         if(frame > frames)frame = 1;
 
         BufferedImage img = animation.getFrame(frame);
 
-        g2d.drawImage(img, 300, getLocation().getY(), img.getWidth() * scale, img.getHeight() * scale, null);
+        int x = location.getX() - ScreenLocation.getCenter();
+
+        Render.renderInWorld(g2d, img, x, location.getRenderedY(), scale);
         frame++;
     }
 }
