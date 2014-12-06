@@ -8,7 +8,7 @@ public class Level1 implements LevelModel
 {
     public void updateBackground(Graphics2D g2d)
     {
-        BackGround bg = new BackGround("/bg/1.png", "/bg/2.png", "/bg/3.png");
+        BackGround bg = new BackGround("/sprites/bg/1.png", "/sprites/bg/2.png", "/sprites/bg/3.png");
         bg.update(g2d);
     }
 

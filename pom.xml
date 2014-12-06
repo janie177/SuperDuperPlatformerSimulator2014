@@ -10,18 +10,19 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>fully.qualified.MainClass</mainClass>
-                        </manifest>
-                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.minegusta.janie177.Main</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
-        <defaultGoal>mvn clean compile assembly:single</defaultGoal>
+
+        <defaultGoal>assembly:assembly</defaultGoal>
     </build>
 
 </project>

@@ -1,7 +1,5 @@
 package com.minegusta.janie177.speler;
 
-import com.minegusta.janie177.GamePanel;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -50,7 +48,7 @@ public class RenderSpeler
     private void springLinks()
     {
         try {
-            speler = ImageIO.read(getClass().getResourceAsStream("/speler/springlinks.png"));
+            speler = ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springlinks.png"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -60,7 +58,7 @@ public class RenderSpeler
     private void springRechts()
     {
         try {
-            speler = ImageIO.read(getClass().getResourceAsStream("/speler/springrechts.png"));
+            speler = ImageIO.read(getClass().getResourceAsStream("/sprites/speler/springrechts.png"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -70,7 +68,7 @@ public class RenderSpeler
     private void links()
     {
         try {
-            speler = ImageIO.read(getClass().getResourceAsStream("/speler/links.png"));
+            speler = ImageIO.read(getClass().getResourceAsStream("/sprites/speler/links.png"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -80,7 +78,7 @@ public class RenderSpeler
     private void rechts()
     {
         try {
-            speler = ImageIO.read(getClass().getResourceAsStream("/speler/rechts.png"));
+            speler = ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png"));
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -90,7 +88,7 @@ public class RenderSpeler
     private void stil()
     {
         try {
-            speler = ImageIO.read(getClass().getResourceAsStream("/speler/rechts.png"));
+            speler = ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png"));
         } catch (Exception e)
         {
             e.printStackTrace();
