@@ -121,7 +121,7 @@ public class RenderSpeler
 
     private void draw()
     {
-        Render.renderInWorld(g2d, speler, 0, PlayerLocation.getRenderedY(), 5);
+        Render.renderInWorld(g2d, speler, PlayerLocation.getX(), PlayerLocation.getRenderedY(), 5);
     }
 
     private int getFromMap(SpelerAcie actie, int max)

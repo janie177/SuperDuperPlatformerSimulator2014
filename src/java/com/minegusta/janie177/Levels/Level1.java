@@ -20,7 +20,7 @@ public class Level1 implements LevelModel
         bg.update(g2d);
     }
 
-    private Turret turret = new Turret(10, PlayerLocation.getLocation(), "/sprites/wezens/joost2.png", false, 100, 1, 1, 100, 9);
+    private Turret turret = new Turret(10, new Location(800, 400), "/sprites/wezens/joost3.png", true, 62, 1, 2, 62, 9);
 
     public void draw(Graphics2D g2d)
 	{

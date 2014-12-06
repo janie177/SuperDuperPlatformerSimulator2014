@@ -79,9 +79,8 @@ public abstract class LevendWezen
 
         BufferedImage img = animation.getFrame(frame);
 
-        int x = location.getX() - ScreenLocation.getCenter();
-
-        Render.renderInWorld(g2d, img, x, location.getRenderedY(), scale);
+        //Flip als hij achteruit gaat
+        Render.renderInWorld(g2d, img, location.getX(), location.getRenderedY(), scale, forward);
         frame++;
     }
 }
