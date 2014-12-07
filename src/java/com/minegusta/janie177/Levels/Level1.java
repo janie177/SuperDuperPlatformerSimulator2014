@@ -1,8 +1,6 @@
 package com.minegusta.janie177.Levels;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.data.Storage;
@@ -23,19 +21,14 @@ public class Level1 implements LevelModel
     @Override
     public void addCreatures()
     {
-        LevendWezen[] wezens =
-                {
-                Wezen.JOOST.build(600, 400),
-                Wezen.BAL_ELLENDE.build(700, 800),
-                Wezen.GROTE_JOOST.build(1000, 420),
-                Wezen.JOOST.build(1200, 500),
-                Wezen.JOOST.build(1300, 140)
-        };
-
+        //maak de map eerst leeg.
         Storage.creatureMap.clear();
-        for(LevendWezen wezen : wezens)
+
+        LevendWezen[] wezens = {Wezen.GROTE_JOOST.build(600,200),Wezen.JOOST.build(400,200), Wezen.JOOST.build(200, 180)};
+
+        for(LevendWezen w : wezens)
         {
-            Storage.add(wezen.getLocation().getX(), wezen);
+            Storage.add(w.getLocation().getX(), w);
         }
     }
 

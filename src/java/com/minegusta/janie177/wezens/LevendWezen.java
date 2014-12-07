@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class LevendWezen
+public class LevendWezen
 {
     private int health;
     private Location location;
@@ -61,10 +61,11 @@ public abstract class LevendWezen
         return location;
     }
 
-    public void setLocation(Location l)
+    public LevendWezen setLocation(Location l)
     {
         origin = l;
         location = l;
+        return this;
     }
 
     public boolean isDood()
@@ -72,7 +73,10 @@ public abstract class LevendWezen
         return health <= 0;
     }
 
-    public abstract void sterfAnimatie(Graphics2D g2d);
+    public void sterfAnimatie(Graphics2D g2d)
+    {
+        //TODO Een sterg animatie maken
+    }
 
     public void animeer(Graphics2D g2d)
     {
