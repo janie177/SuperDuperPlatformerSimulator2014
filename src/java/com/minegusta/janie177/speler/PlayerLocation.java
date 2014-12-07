@@ -24,7 +24,7 @@ public class PlayerLocation
         }
     }
 
-    private static Location location = new Location(15, 180);
+    private static Location location = new Location(15, 100);
 
 
     //-- Bewegen --//
@@ -39,13 +39,13 @@ public class PlayerLocation
     private static void moveUp()
     {
         location.setY(location.getY() + jumpSpeed);
-        if(location.getY() > 700)location.setY(700);
+        if(location.getY() > 800)location.setY(800);
     }
 
     private static void moveDown()
     {
         location.setY(location.getY() - jumpSpeed);
-        if(location.getY() < 180) location.setY(180);
+        if(location.getY() < 100) location.setY(100);
     }
     private static void moveLeft()
     {

@@ -62,6 +62,12 @@ public abstract class LevendWezen
         return health > 0;
     }
 
+    public void sterfAnimatie(Graphics2D g2d)
+    {
+        //TODO Doe hier een animatie voor als een wezen dood gaat.
+
+    }
+
     public void animeer(Graphics2D g2d)
     {
         if(lopend) {
