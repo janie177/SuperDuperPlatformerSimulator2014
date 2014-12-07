@@ -10,9 +10,6 @@ import javax.swing.*;
 import com.minegusta.janie177.Levels.LevelUp;
 import com.minegusta.janie177.manager.LevelManager;
 import com.minegusta.janie177.speler.PlayerLocation;
-import com.minegusta.janie177.speler.RenderSpeler;
-import com.minegusta.janie177.util.Location;
-import com.minegusta.janie177.wezens.Turret;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {

@@ -107,7 +107,7 @@ public class RenderSpeler
     {
         try
         {
-            int max = 3;
+            int max = 1;
             AnimatedSprite animation = new AnimatedSprite(ImageIO.read(getClass().getResourceAsStream("/sprites/speler/rechts.png")), 32);
             speler = animation.getFrame(getFromMap(SpelerAcie.IDLE, max));
         } catch (Exception e)
@@ -142,7 +142,7 @@ public class RenderSpeler
         if(animatieMap.containsKey(actie))
         {
             int i = animatieMap.get(actie);
-            if(i + 1 > max) i = 1;
+            if(i + 1 > max) i = 0;
             animatieMap.put(actie, i + 1);
         }
         else
