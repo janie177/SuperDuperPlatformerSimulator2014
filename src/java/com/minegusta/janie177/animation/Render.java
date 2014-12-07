@@ -33,14 +33,46 @@ public class Render
      * @param x De x coordinaat.
      * @param y De y coordinaat.
      * @param scale De schaal waarmee het plaatje wordt vergroot
-     * @param flip Of het plaatje achterstevoren gerenderd moet worden.
+     * @param name De naam van het object.
+     * @param showName Of de naam weergeven moet worden.
      */
-    public static void renderInWorld(Graphics2D g2d, BufferedImage img, int x, int y, int scale, boolean flip)
+    public static void renderInWorld(Graphics2D g2d, BufferedImage img, int x, int y, int scale, boolean showName, String name)
+    {
+        int xCentered = (x - ScreenLocation.getCenter()) + added - (img.getWidth()*scale / 2);
+        int yCentered = y - (img.getHeight()*scale / 2);
+        g2d.drawImage(img, xCentered, yCentered, img.getWidth() * scale, img.getHeight() * scale, null);
+        if(showName)
+        {
+            g2d.setColor(Color.YELLOW);
+            g2d.setFont(new Font("Arial", Font.BOLD, 34));
+            g2d.drawString(name, xCentered, yCentered - img.getWidth() * scale / 2);
+        }
+    }
+
+    /**
+     * Render een object in de wereld.
+     * @param g2d Het Graphics2D scherm waarop het gerenderd wordt.
+     * @param img Het plaatje om te renderen.
+     * @param x De x coordinaat.
+     * @param y De y coordinaat.
+     * @param scale De schaal waarmee het plaatje wordt vergroot
+     * @param flip Of het plaatje achterstevoren gerenderd moet worden.
+     * @param name De naam van het object.
+     * @param showName Of de naam weergeven moet worden.
+     */
+    public static void renderInWorld(Graphics2D g2d, BufferedImage img, int x, int y, int scale, boolean flip, String name, boolean showName)
     {
         int xCentered = (x - ScreenLocation.getCenter()) + added - (img.getWidth()*scale / 2);
         int yCentered = y - (img.getHeight()*scale / 2);
 
         int width = img.getWidth() * scale;
+
+        if(showName)
+        {
+            g2d.setColor(Color.YELLOW);
+            g2d.setFont(new Font("Arial", Font.BOLD, 34));
+            g2d.drawString(name, xCentered, yCentered - img.getWidth() * scale / 2);
+        }
 
         if(flip)
         {

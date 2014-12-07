@@ -21,14 +21,18 @@ public abstract class LevendWezen
     private int frame = 1;
     private int scale;
     private int speed;
+    private boolean showName;
+    private String name;
     boolean forward = false;
     private int distanceBetweenFrames;
 
-    public LevendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed)
+    public LevendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
     {
         this.health = health;
         this.origin = origin;
         this.radius = radius;
+        this.name = name;
+        this.showName = showName;
         this.scale = scale;
         this.lopend = lopend;
         this.speed = speed;
@@ -57,16 +61,18 @@ public abstract class LevendWezen
         return location;
     }
 
+    public void setLocation(Location l)
+    {
+        origin = l;
+        location = l;
+    }
+
     public boolean isDood()
     {
-        return health > 0;
+        return health <= 0;
     }
 
-    public void sterfAnimatie(Graphics2D g2d)
-    {
-        //TODO Doe hier een animatie voor als een wezen dood gaat.
-
-    }
+    public abstract void sterfAnimatie(Graphics2D g2d);
 
     public void animeer(Graphics2D g2d)
     {
@@ -85,8 +91,8 @@ public abstract class LevendWezen
 
         BufferedImage img = animation.getFrame(frame);
 
-        //Flip als hij achteruit gaat
-        Render.renderInWorld(g2d, img, location.getX(), location.getRenderedY(), scale, forward);
+        Render.renderInWorld(g2d, img, location.getX(), location.getRenderedY(), scale, forward, name, showName);
+
         frame++;
     }
 }
