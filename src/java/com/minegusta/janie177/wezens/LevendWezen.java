@@ -2,14 +2,13 @@ package com.minegusta.janie177.wezens;
 
 import com.minegusta.janie177.animation.AnimatedSprite;
 import com.minegusta.janie177.animation.Render;
-import com.minegusta.janie177.manager.ScreenLocation;
 import com.minegusta.janie177.util.Location;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class LevendWezen
+public class LevendWezen extends LevendObject
 {
     private int health;
     private Location location;
@@ -46,14 +45,27 @@ public class LevendWezen
         } catch (Exception e) {e.printStackTrace();}
     }
 
-    public void setHealth(int health)
-    {
-        this.health = health;
-    }
-
+    @Override
     public int getHealth()
     {
         return health;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+
+    }
+
+    @Override
+    public boolean isDead() {
+        return getHealth() <= 0;
+    }
+
+    @Override
+    public void sterfAnimatie() {
+
+        //Sterf hier
     }
 
     public Location getLocation()
@@ -61,16 +73,18 @@ public class LevendWezen
         return location;
     }
 
-    public LevendWezen setLocation(Location l)
+    public Location getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Location l)
     {
         origin = l;
         location = l;
-        return this;
     }
 
-    public boolean isDood()
-    {
-        return health <= 0;
+    public void setLocation(Location l) {
+        location = l;
     }
 
     public void sterfAnimatie(Graphics2D g2d)
