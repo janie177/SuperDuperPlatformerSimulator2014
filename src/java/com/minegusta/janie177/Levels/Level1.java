@@ -6,8 +6,8 @@ import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.speler.RenderSpeler;
 import com.minegusta.janie177.util.RenderUtil;
-import com.minegusta.janie177.wezens.LevendWezen;
-import com.minegusta.janie177.wezens.Wezen;
+import com.minegusta.janie177.wezens.LopendWezen;
+import com.minegusta.janie177.wezens.LopendeWezens;
 
 public class Level1 implements LevelModel
 {
@@ -24,9 +24,9 @@ public class Level1 implements LevelModel
         //maak de map eerst leeg.
         Storage.creatureMap.clear();
 
-        LevendWezen[] wezens = {Wezen.GROTE_JOOST.build(600,200),Wezen.JOOST.build(400,200), Wezen.JOOST.build(200, 180)};
+        LopendWezen[] wezens = {LopendeWezens.GROTE_JOOST.build(600,200), LopendeWezens.CAGE.build(400,200), LopendeWezens.JOOST.build(200, 180)};
 
-        for(LevendWezen w : wezens)
+        for(LopendWezen w : wezens)
         {
             Storage.add(w.getLocation().getX(), w);
         }

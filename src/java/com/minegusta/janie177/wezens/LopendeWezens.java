@@ -3,10 +3,11 @@ package com.minegusta.janie177.wezens;
 
 import com.minegusta.janie177.util.Location;
 
-public enum Wezen
+public enum LopendeWezens
 {
     JOOST(20, "/sprites/wezens/joost3.png", true, 80, 1, 1, 62, 7, true, "Joost"),
     GROTE_JOOST(20, "/sprites/wezens/joost3.png", true, 80, 1, 4, 62, 4, true, "Big Joost"),
+    CAGE(20, "/sprites/wezens/cage.png", true, 80, 1, 1, 256, 6, true, "CAGE"),
     BAL_ELLENDE(10, "/sprites/speler/springlinks.png", true, 400, 4, 8, 32, 18, false, "Bal Der Ellende");
 
     private int health;
@@ -20,7 +21,7 @@ public enum Wezen
     private boolean showName;
     private String name;
 
-    private Wezen(int health, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
+    private LopendeWezens(int health, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
     {
         this.health = health;
         this.imagePath = imagePath;
@@ -34,8 +35,8 @@ public enum Wezen
         this.name = name;
     }
 
-    public LevendWezen build(int x, int y)
+    public LopendWezen build(int x, int y)
     {
-        return new LevendWezen(health, new Location(x,y), imagePath, lopend, radius, frames, scale, distanceBetweenFrames, speed, showName, name);
+        return new LopendWezen(health, new Location(x,y), imagePath, lopend, radius, frames, scale, distanceBetweenFrames, speed, showName, name);
     }
 }

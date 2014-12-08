@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class LevendWezen extends LevendObject
+public class LopendWezen extends LevendObject
 {
     private int health;
     private Location location;
@@ -25,7 +25,7 @@ public class LevendWezen extends LevendObject
     boolean forward = false;
     private int distanceBetweenFrames;
 
-    public LevendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
+    public LopendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
     {
         this.health = health;
         this.origin = origin;
@@ -41,7 +41,7 @@ public class LevendWezen extends LevendObject
 
         //probeer de image te laden
         try{
-            image = ImageIO.read(LevendWezen.class.getResourceAsStream(imagePath));
+            image = ImageIO.read(LopendWezen.class.getResourceAsStream(imagePath));
         } catch (Exception e) {e.printStackTrace();}
     }
 
@@ -63,7 +63,7 @@ public class LevendWezen extends LevendObject
     }
 
     @Override
-    public void sterfAnimatie() {
+    public void sterfAnimatie(Graphics2D g2d) {
 
         //Sterf hier
     }
@@ -85,11 +85,6 @@ public class LevendWezen extends LevendObject
 
     public void setLocation(Location l) {
         location = l;
-    }
-
-    public void sterfAnimatie(Graphics2D g2d)
-    {
-        //TODO Een sterg animatie maken
     }
 
     public void animeer(Graphics2D g2d)
