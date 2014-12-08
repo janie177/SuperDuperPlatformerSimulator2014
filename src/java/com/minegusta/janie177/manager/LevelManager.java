@@ -1,7 +1,7 @@
 package com.minegusta.janie177.manager;
 
-import com.minegusta.janie177.Levels.Level;
-import com.minegusta.janie177.Levels.LevelModel;
+import com.minegusta.janie177.levels.Level;
+import com.minegusta.janie177.levels.LevelModel;
 
 import java.awt.Graphics2D;
 

@@ -1,21 +1,21 @@
 package com.minegusta.janie177.data;
 
-import com.minegusta.janie177.wezens.LopendWezen;
+import com.minegusta.janie177.wezens.types.MovingCreature;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 public class Storage
 {
-    public static ConcurrentMap<Integer, LopendWezen> creatureMap = new ConcurrentHashMap<Integer, LopendWezen>();
+    public static ConcurrentMap<Integer, MovingCreature> objectMap = new ConcurrentHashMap<Integer, MovingCreature>();
 
-    public static ConcurrentMap<Integer, LopendWezen> getCreatures()
+    public static ConcurrentMap<Integer, MovingCreature> getCreatures()
     {
-        return creatureMap;
+        return objectMap;
     }
 
-    public static void add(int location, LopendWezen wezen)
+    public static void add(int location, MovingCreature wezen)
     {
-        creatureMap.put(location, wezen);
+        objectMap.put(location, wezen);
     }
 }

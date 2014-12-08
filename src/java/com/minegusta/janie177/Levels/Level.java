@@ -1,4 +1,4 @@
-package com.minegusta.janie177.Levels;
+package com.minegusta.janie177.levels;
 
 public enum Level
 {

@@ -1,4 +1,4 @@
-package com.minegusta.janie177.Levels;
+package com.minegusta.janie177.levels;
 
 import java.awt.*;
 
@@ -6,8 +6,8 @@ import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.speler.RenderSpeler;
 import com.minegusta.janie177.util.RenderUtil;
-import com.minegusta.janie177.wezens.LopendWezen;
-import com.minegusta.janie177.wezens.LopendeWezens;
+import com.minegusta.janie177.wezens.types.MovingCreature;
+import com.minegusta.janie177.wezens.soorten.LopendeWezens;
 
 public class Level1 implements LevelModel
 {
@@ -22,11 +22,11 @@ public class Level1 implements LevelModel
     public void addCreatures()
     {
         //maak de map eerst leeg.
-        Storage.creatureMap.clear();
+        Storage.objectMap.clear();
 
-        LopendWezen[] wezens = {LopendeWezens.GROTE_JOOST.build(600,200), LopendeWezens.CAGE.build(400,200), LopendeWezens.JOOST.build(200, 180)};
+        MovingCreature[] wezens = {LopendeWezens.GROTE_JOOST.build(600,200), LopendeWezens.CAGE.build(400,200), LopendeWezens.JOOST.build(200, 180)};
 
-        for(LopendWezen w : wezens)
+        for(MovingCreature w : wezens)
         {
             Storage.add(w.getLocation().getX(), w);
         }

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
-import com.minegusta.janie177.Levels.LevelUp;
+import com.minegusta.janie177.levels.LevelUp;
 import com.minegusta.janie177.manager.LevelManager;
 import com.minegusta.janie177.speler.PlayerLocation;
 
@@ -16,7 +16,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //-- Alle informatie die belangrijk is voor het scherm zelf --//
 
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private static int scale = 10;
+	private static int scale = 15;
 	public static int height = 60 * scale;
 	public static int width = 80 * scale;
 	private Thread thread = null;

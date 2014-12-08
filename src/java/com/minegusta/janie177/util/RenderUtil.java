@@ -3,7 +3,7 @@ package com.minegusta.janie177.util;
 
 import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.manager.ScreenLocation;
-import com.minegusta.janie177.wezens.LopendWezen;
+import com.minegusta.janie177.wezens.types.MovingCreature;
 
 import java.awt.*;
 import java.util.concurrent.ConcurrentMap;
@@ -16,7 +16,7 @@ public class RenderUtil
      * @param g2d Het scherm waarop alles getekend wordt.
      * @param map De map die alle wezens bevat.
      */
-    public static void renderCreatures(Graphics2D g2d, ConcurrentMap<Integer, LopendWezen> map)
+    public static void renderCreatures(Graphics2D g2d, ConcurrentMap<Integer, MovingCreature> map)
     {
         for(int xCoordinaat : map.keySet())
         {

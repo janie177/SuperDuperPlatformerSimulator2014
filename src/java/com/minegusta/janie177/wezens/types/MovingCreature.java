@@ -1,4 +1,4 @@
-package com.minegusta.janie177.wezens;
+package com.minegusta.janie177.wezens.types;
 
 import com.minegusta.janie177.animation.AnimatedSprite;
 import com.minegusta.janie177.animation.Render;
@@ -8,15 +8,17 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class LopendWezen extends LevendObject
+public class MovingCreature extends LivingObject
 {
     private int health;
     private Location location;
     private BufferedImage image;
     private int radius;
     private Location origin;
+    private int damage;
     private int frames;
-    private boolean lopend;
+    private int hitBoxRadius;
+    private boolean hasCollision;
     private int frame = 1;
     private int scale;
     private int speed;
@@ -25,7 +27,7 @@ public class LopendWezen extends LevendObject
     boolean forward = false;
     private int distanceBetweenFrames;
 
-    public LopendWezen(int health, Location origin, String imagePath, boolean lopend, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name)
+    public MovingCreature(int health, Location origin, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasCollision, int hitBoxRadius)
     {
         this.health = health;
         this.origin = origin;
@@ -33,15 +35,17 @@ public class LopendWezen extends LevendObject
         this.name = name;
         this.showName = showName;
         this.scale = scale;
-        this.lopend = lopend;
         this.speed = speed;
+        this.damage = damage;
+        this.hasCollision = hasCollision;
+        this.hitBoxRadius = hitBoxRadius;
         this.frames = frames;
         this.distanceBetweenFrames = distanceBetweenFrames;
         this.location = origin;
 
         //probeer de image te laden
         try{
-            image = ImageIO.read(LopendWezen.class.getResourceAsStream(imagePath));
+            image = ImageIO.read(MovingCreature.class.getResourceAsStream(imagePath));
         } catch (Exception e) {e.printStackTrace();}
     }
 
@@ -49,6 +53,11 @@ public class LopendWezen extends LevendObject
     public int getHealth()
     {
         return health;
+    }
+
+    @Override
+    public int getDamage() {
+        return damage;
     }
 
     @Override
@@ -73,31 +82,50 @@ public class LopendWezen extends LevendObject
         return location;
     }
 
+    @Override
+    public boolean hasCollision() {
+        return hasCollision;
+    }
+
+    @Override
+    public int getHitBoxRadius() {
+        return hitBoxRadius;
+    }
+
+    @Override
+    public void actionOnCollision(Graphics2D g2d) {
+        //Doe hier iets bij het botsen
+    }
+
+    @Override
     public Location getOrigin() {
         return origin;
     }
 
+    @Override
     public void setOrigin(Location l)
     {
         origin = l;
         location = l;
     }
 
+    @Override
     public void setLocation(Location l) {
         location = l;
     }
 
+    @Override
     public void animeer(Graphics2D g2d)
     {
-        if(lopend) {
-            if (Math.abs(origin.getX() - location.getX()) >= radius) forward = !forward;
-            if (forward) {
-                location = new Location(location.getX() + speed, location.getY());
-            } else
-            {
-                location = new Location(location.getX() - speed, location.getY());
-            }
+        if (Math.abs(origin.getX() - location.getX()) >= radius) forward = !forward;
+        if (forward)
+        {
+            location = new Location(location.getX() + speed, location.getY());
+        } else
+        {
+            location = new Location(location.getX() - speed, location.getY());
         }
+
         AnimatedSprite animation = new AnimatedSprite(image, distanceBetweenFrames);
 
         if(frame > frames)frame = 1;
