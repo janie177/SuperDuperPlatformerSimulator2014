@@ -18,6 +18,7 @@ public class PlayerStatus
     private static boolean right = false;
     private static boolean down = false;
     private static boolean sprint = false;
+    private static boolean canJump = true;
 
     //-- Alle methodes die hier bij horen --//
 
@@ -124,7 +125,8 @@ public class PlayerStatus
 
     public static void jump()
     {
-        velocity.setY(jumpSpeed);
+        if(canJump)velocity.setY(jumpSpeed);
+        canJump = false;
     }
 
 

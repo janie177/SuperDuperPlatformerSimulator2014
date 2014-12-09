@@ -2,6 +2,7 @@ package com.minegusta.janie177.levels;
 
 import com.minegusta.janie177.background.BackGround;
 import com.minegusta.janie177.data.Storage;
+import com.minegusta.janie177.speler.PlayerStatus;
 import com.minegusta.janie177.speler.RenderSpeler;
 import com.minegusta.janie177.util.RenderUtil;
 import com.minegusta.janie177.wezens.soorten.MovingCreatures;
@@ -40,6 +41,8 @@ public class Level1 implements LevelModel
     public void draw(Graphics2D g2d)
 	{
         RenderUtil.renderCreatures(g2d, Storage.getCreatures());
+
+        PlayerStatus.update();
 
         //Teken de speler voor de objecten zodat deze altijd zichtbaar is.
         RenderSpeler r = new RenderSpeler();
