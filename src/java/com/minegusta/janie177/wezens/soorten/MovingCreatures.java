@@ -2,11 +2,12 @@ package com.minegusta.janie177.wezens.soorten;
 
 
 import com.minegusta.janie177.util.Location;
+import com.minegusta.janie177.wezens.collision.CollisionAction;
 import com.minegusta.janie177.wezens.types.MovingCreature;
 
 public enum MovingCreatures
 {
-    JOOST(10, "/sprites/wezens/joost3.png", 50, 1, 5, 62, 3, true, "NoobDutch", 1, true);
+    JOOST(10, "/sprites/wezens/joost3.png", 50, 1, 5, 62, 3, true, "NoobDutch", 1, true, CollisionAction.NOTHING, 4);
 
     private int health;
     private String imagePath;
@@ -20,8 +21,10 @@ public enum MovingCreatures
     private int hitBoxRadius;
     private boolean hasColission;
     private int damage;
+    private CollisionAction action;
+    private double bounceSpeed;
 
-    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius)
+    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius, CollisionAction action, double bounceSpeed)
     {
         this.health = health;
         this.imagePath = imagePath;
@@ -35,10 +38,12 @@ public enum MovingCreatures
         this.damage = damage;
         this.hitBoxRadius = hitBoxRadius;
         this.hasColission = hasColission;
+        this.action = action;
+        this.bounceSpeed = bounceSpeed;
 
     }
 
-    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission)
+    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, CollisionAction action, double bounceSpeed)
     {
         this.health = health;
         this.imagePath = imagePath;
@@ -52,11 +57,13 @@ public enum MovingCreatures
         this.damage = damage;
         this.hitBoxRadius = (distanceBetweenFrames / 2) * scale;
         this.hasColission = hasColission;
+        this.action = action;
+        this.bounceSpeed = bounceSpeed;
     }
 
     public MovingCreature build(int x, int y)
     {
         Location origin = new Location(x, y);
-        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, health, showName, name, speed, radius);
+        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, health, showName, name, speed, radius, action, bounceSpeed);
     }
 }

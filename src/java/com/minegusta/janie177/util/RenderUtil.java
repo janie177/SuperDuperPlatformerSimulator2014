@@ -24,9 +24,9 @@ public class RenderUtil
             {
                 if (!map.get(xCoordinaat).isDead())
                 {
-                    map.get(xCoordinaat).animeer(g2d);
+                    map.get(xCoordinaat).animate(g2d);
                 } else {
-                    map.get(xCoordinaat).sterfAnimatie(g2d);
+                    map.get(xCoordinaat).deathAnimation(g2d);
                     map.remove(xCoordinaat);
                 }
             }

@@ -1,4 +1,4 @@
-package com.minegusta.janie177.animation;
+package com.minegusta.janie177.util;
 
 import com.minegusta.janie177.manager.ScreenLocation;
 

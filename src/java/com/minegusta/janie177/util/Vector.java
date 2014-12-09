@@ -7,7 +7,15 @@ public class Vector
 
     public Vector(double x, double y, double speed)
     {
-        this.a = y/x;
+        if(x == 0)
+        {
+            a = y;
+        }
+        if(y == 0)
+        {
+            a = x;
+        }
+        else this.a = y/x;
         this.speed = speed;
     }
 
@@ -19,7 +27,18 @@ public class Vector
 
     public Vector(Location origin, Location goal, double speed)
     {
-        this.a = ((goal.getRenderedY() - origin.getY()) / (goal.getX() - origin.getX()));
+        int x = goal.getX() - origin.getX();
+        int y = goal.getY() - origin.getX();
+
+        if(x == 0)
+        {
+            a = y;
+        }
+        if(y == 0)
+        {
+            a = x;
+        }
+        else this.a = (x / y);
         this.speed = speed;
     }
 
@@ -35,6 +54,6 @@ public class Vector
 
     public Location move(Location l)
     {
-        return l.setY((int) getDirection() * (int) speed).setX((int) speed);
+        return l.setY(l.getY() + (int) getDirection() * (int) speed).setX(l.getX() + (int) speed);
     }
 }

@@ -1,7 +1,7 @@
 package com.minegusta.janie177.speler;
 
 import com.minegusta.janie177.animation.AnimatedSprite;
-import com.minegusta.janie177.animation.Render;
+import com.minegusta.janie177.util.Render;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,14 +22,14 @@ public class RenderSpeler
     public void render(Graphics2D g2d)
     {
         this.g2d = g2d;
-        boolean jump = PlayerLocation.getY() > y;
+        boolean jump = PlayerStatus.getY() > y;
 
-        if(PlayerLocation.getX() > x)
+        if(PlayerStatus.getX() > x)
         {
             if(jump)springRechts();
             else rechts();
         }
-        else if(PlayerLocation.getX() < x)
+        else if(PlayerStatus.getX() < x)
         {
             if(jump)springLinks();
             else links();
@@ -47,8 +47,8 @@ public class RenderSpeler
         draw();
 
         //update x en y
-        x = PlayerLocation.getX();
-        y = PlayerLocation.getY();
+        x = PlayerStatus.getX();
+        y = PlayerStatus.getY();
     }
 
     //De verschillende animaties
@@ -119,7 +119,7 @@ public class RenderSpeler
 
     private void draw()
     {
-        Render.renderInWorld(g2d, speler, PlayerLocation.getX(), PlayerLocation.getRenderedY(), 7);
+        Render.renderInWorld(g2d, speler, PlayerStatus.getX(), PlayerStatus.getRenderedY(), 7);
     }
 
     private int getFromMap(SpelerAcie actie, int max)

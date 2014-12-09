@@ -6,6 +6,8 @@ import java.awt.*;
 
 public class Main
 {
+    private static GamePanel gamePanel = new GamePanel();
+
     public static void main(String[] args)
 	{
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -24,9 +26,15 @@ public class Main
 
         //De rest van het bouwen van het frame
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setContentPane(new GamePanel());
+        frame.setContentPane(gamePanel);
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
 	}
+
+    //Het krijgen van het gamepanel om dingen aan te passen.
+    public static GamePanel getGamePanel()
+    {
+        return gamePanel;
+    }
 }

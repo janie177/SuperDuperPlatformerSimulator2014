@@ -1,8 +1,11 @@
 package com.minegusta.janie177.wezens.types;
 
+import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.Main;
 import com.minegusta.janie177.animation.AnimatedSprite;
-import com.minegusta.janie177.animation.Render;
+import com.minegusta.janie177.util.Render;
 import com.minegusta.janie177.util.Location;
+import com.minegusta.janie177.wezens.collision.CollisionAction;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,10 +23,12 @@ public abstract class Object
     private boolean showName;
     private  int scale;
     private int frames;
+    private CollisionAction action;
+    private double bounceSpeed;
     private int distanceBetweenFrames;
     private int frame = 1;
 
-    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name)
+    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name, CollisionAction action, double bounceSpeed)
     {
         this.hasCollision = hasCollision;
         this. hitBoxRadius = hitBoxRadius;
@@ -35,6 +40,8 @@ public abstract class Object
         this.showName = showName;
         this.frames = frames;
         this.distanceBetweenFrames = distanceBetweenFrames;
+        this.action = action;
+        this.bounceSpeed = bounceSpeed;
 
         //probeer de image te laden
         try{
@@ -42,7 +49,7 @@ public abstract class Object
         } catch (Exception e) {e.printStackTrace();}
     }
 
-    public void animeer(Graphics2D g2d, boolean flipped)
+    public void animate(Graphics2D g2d, boolean flipped)
     {
         AnimatedSprite animation = new AnimatedSprite(getImage(), getDistanceBetweenFrames());
 
@@ -55,7 +62,36 @@ public abstract class Object
         frame++;
     }
 
-    public abstract void actionOnCollision(Graphics2D g2d);
+    public void actionOnCollision(Graphics2D g2d)
+    {
+        switch (action)
+        {
+            case NOTHING:
+            {
+                //Doe hier helemaal niets :D
+            }
+                break;
+            case DAMAGE:
+            {
+                //Damage de speler hier
+            }
+                break;
+            case BOUNCE:
+            {
+                //Lanceer de speler hier
+            }
+                break;
+            case LEVELUP:
+            {
+                //Level omhoog :D
+                Main.getGamePanel().levelUp();
+            }
+                break;
+            default:
+                break;
+        }
+
+    }
 
     public BufferedImage getImage()
     {

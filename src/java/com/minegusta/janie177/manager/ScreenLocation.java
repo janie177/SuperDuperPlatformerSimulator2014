@@ -1,7 +1,7 @@
 package com.minegusta.janie177.manager;
 
 import com.minegusta.janie177.GamePanel;
-import com.minegusta.janie177.speler.PlayerLocation;
+import com.minegusta.janie177.speler.PlayerStatus;
 
 public class ScreenLocation
 {
@@ -11,16 +11,16 @@ public class ScreenLocation
 
     public static int getX1()
     {
-        return PlayerLocation.getX() - GamePanel.width / 2;
+        return PlayerStatus.getX() - GamePanel.width / 2;
     }
 
     public static int getCenter()
     {
-        return PlayerLocation.getX();
+        return PlayerStatus.getX();
     }
 
     public static int getX2()
     {
-        return PlayerLocation.getX() + GamePanel.width / 2;
+        return PlayerStatus.getX() + GamePanel.width / 2;
     }
 }

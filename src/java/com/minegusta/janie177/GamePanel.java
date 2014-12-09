@@ -2,7 +2,7 @@ package com.minegusta.janie177;
 
 import com.minegusta.janie177.levels.LevelUp;
 import com.minegusta.janie177.manager.LevelManager;
-import com.minegusta.janie177.speler.PlayerLocation;
+import com.minegusta.janie177.speler.PlayerStatus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             draw();
 
             //Check voor lopen
-            new PlayerLocation();
+            new PlayerStatus();
 
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
@@ -92,7 +92,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         manager.draw(g2d);
 	}
 
-    private void levelUp()
+    //Level up als een
+    public void levelUp()
     {
         //Zet de level manager hier omhoog naar het volgende level.
         level = LevelUp.up(level);
@@ -121,27 +122,27 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         {
             case KeyEvent.VK_A:
             {
-                PlayerLocation.setLinks(true);
+                PlayerStatus.
             }
                 break;
             case KeyEvent.VK_S:
             {
-                PlayerLocation.setDown(true);
+                PlayerStatus.setDown(true);
             }
                 break;
             case KeyEvent.VK_D:
             {
-                PlayerLocation.setRechts(true);
+                PlayerStatus.setRechts(true);
             }
                 break;
             case KeyEvent.VK_W:
             {
-                PlayerLocation.setUp(true);
+                PlayerStatus.setUp(true);
             }
                 break;
             case KeyEvent.VK_SPACE:
             {
-                PlayerLocation.setUp(true);
+                PlayerStatus.setUp(true);
             }
                 break;
         }
@@ -154,27 +155,27 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         {
             case KeyEvent.VK_A:
             {
-                PlayerLocation.setLinks(false);
+                PlayerStatus.setLinks(false);
             }
             break;
             case KeyEvent.VK_S:
             {
-                PlayerLocation.setDown(false);
+                PlayerStatus.setDown(false);
             }
             break;
             case KeyEvent.VK_D:
             {
-                PlayerLocation.setRechts(false);
+                PlayerStatus.setRechts(false);
             }
             break;
             case KeyEvent.VK_W:
             {
-                PlayerLocation.setUp(false);
+                PlayerStatus.setUp(false);
             }
             break;
             case KeyEvent.VK_SPACE:
             {
-                PlayerLocation.setUp(false);
+                PlayerStatus.setUp(false);
             }
             break;
         }
