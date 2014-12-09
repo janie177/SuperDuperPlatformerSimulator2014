@@ -16,7 +16,6 @@ public class PlayerStatus
     //-- Alle locatie veranderende info --//
     private static boolean left = false;
     private static boolean right = false;
-    private static boolean jumping = false;
     private static boolean down = false;
     private static boolean sprint = false;
 
@@ -33,10 +32,6 @@ public class PlayerStatus
         {
             speed = 9;
             jumpSpeed = 18;
-        }
-        if(jumping)
-        {
-            velocity.setY(jumpSpeed);
         }
         if(left)
         {
@@ -55,6 +50,8 @@ public class PlayerStatus
         setLocation(getLocation().setX(getX() + velocity.getX()).setY(getY() + velocity.getY()));
         //X mag niet onder 0 komen.
         if(getX() < 0) setLocation(getLocation().setX(0));
+
+        velocity.update();
 
     }
 
@@ -104,10 +101,6 @@ public class PlayerStatus
     }
 
     //-- Methods om te bewegen --//
-    public static void setJumping(boolean b)
-    {
-        jumping = b;
-    }
 
     public static void setLeft(boolean b)
     {
@@ -128,6 +121,12 @@ public class PlayerStatus
     {
         sprint = b;
     }
+
+    public static void jump()
+    {
+        velocity.setY(jumpSpeed);
+    }
+
 
 
 

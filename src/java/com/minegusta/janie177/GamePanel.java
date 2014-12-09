@@ -68,11 +68,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             g2d = (Graphics2D) image.getGraphics();
 
-            //Teken methode voor de wereld en entities. Wordt doorgegeven aan de level class.
+            //Teken methode voor de wereld, speler en entities. Wordt doorgegeven aan de level class.
             draw();
-
-            //Check voor lopen
-            new PlayerStatus();
 
             //Tekent het uiteindelijke resultaat op het scherm.
             updateScreen();
@@ -112,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     @Override
     public void keyTyped(KeyEvent e)
     {
+
     }
 
     //Luister hier naar lopen en springen.
@@ -122,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         {
             case KeyEvent.VK_A:
             {
-                PlayerStatus.
+                PlayerStatus.setLeft(true);
             }
                 break;
             case KeyEvent.VK_S:
@@ -132,19 +130,24 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
                 break;
             case KeyEvent.VK_D:
             {
-                PlayerStatus.setRechts(true);
+                PlayerStatus.setRight(true);
             }
                 break;
             case KeyEvent.VK_W:
             {
-                PlayerStatus.setUp(true);
+                PlayerStatus.jump();
             }
                 break;
             case KeyEvent.VK_SPACE:
             {
-                PlayerStatus.setUp(true);
+                PlayerStatus.jump();
             }
                 break;
+            case KeyEvent.VK_SHIFT:
+            {
+                PlayerStatus.setSprint(true);
+            }
+            break;
         }
     }
 
@@ -155,7 +158,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         {
             case KeyEvent.VK_A:
             {
-                PlayerStatus.setLinks(false);
+                PlayerStatus.setLeft(false);
             }
             break;
             case KeyEvent.VK_S:
@@ -165,17 +168,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             break;
             case KeyEvent.VK_D:
             {
-                PlayerStatus.setRechts(false);
+                PlayerStatus.setRight(false);
             }
             break;
-            case KeyEvent.VK_W:
+            case KeyEvent.VK_SHIFT:
             {
-                PlayerStatus.setUp(false);
-            }
-            break;
-            case KeyEvent.VK_SPACE:
-            {
-                PlayerStatus.setUp(false);
+                PlayerStatus.setSprint(false);
             }
             break;
         }
