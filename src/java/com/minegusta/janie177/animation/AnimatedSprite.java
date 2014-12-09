@@ -1,6 +1,5 @@
 package com.minegusta.janie177.animation;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class AnimatedSprite

@@ -1,9 +1,7 @@
 package com.minegusta.janie177.speler;
 
-import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.animation.AnimatedSprite;
 import com.minegusta.janie177.animation.Render;
-import com.minegusta.janie177.manager.ScreenLocation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -3,7 +3,6 @@ package com.minegusta.janie177;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Main
 {

@@ -1,15 +1,14 @@
 package com.minegusta.janie177;
 
+import com.minegusta.janie177.levels.LevelUp;
+import com.minegusta.janie177.manager.LevelManager;
+import com.minegusta.janie177.speler.PlayerLocation;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.*;
-
-import com.minegusta.janie177.levels.LevelUp;
-import com.minegusta.janie177.manager.LevelManager;
-import com.minegusta.janie177.speler.PlayerLocation;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener
 {

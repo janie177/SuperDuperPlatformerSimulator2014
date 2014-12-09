@@ -1,14 +1,11 @@
 package com.minegusta.janie177.background;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-
 import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.manager.ScreenLocation;
-import com.minegusta.janie177.speler.PlayerLocation;
-import javafx.stage.Screen;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class BackGround 
 {

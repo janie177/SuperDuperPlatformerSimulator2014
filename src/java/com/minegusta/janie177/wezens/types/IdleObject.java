@@ -5,35 +5,8 @@ import com.minegusta.janie177.util.Location;
 import java.awt.*;
 
 public class IdleObject extends Object {
-
-    @Override
-    public boolean hasCollision() {
-        return false;
-    }
-
-    @Override
-    public int getHitBoxRadius() {
-        return 0;
-    }
-
-    @Override
-    public Location getOrigin() {
-        return null;
-    }
-
-    @Override
-    public void actionOnCollision(Graphics2D g2d) {
-
-    }
-
-    @Override
-    public void setLocation(Location l) {
-
-    }
-
-    @Override
-    public Location getLocation() {
-        return null;
+    public IdleObject(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, Location location, boolean showName, String name) {
+        super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, location, showName, name);
     }
 
     @Override
@@ -42,7 +15,7 @@ public class IdleObject extends Object {
     }
 
     @Override
-    public void setOrigin(Location l) {
+    public void actionOnCollision(Graphics2D g2d) {
 
     }
 }
