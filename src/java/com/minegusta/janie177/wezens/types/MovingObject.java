@@ -6,13 +6,28 @@ import java.awt.*;
 
 public class MovingObject extends Object
 {
-    public MovingObject(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name) {
+    private boolean flipped = false;
+    private int frame = 1;
+    private int speed;
+    private int radius;
+
+    public MovingObject(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name, int speed, int radius) {
         super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, showName, name);
+        this.speed = speed;
+        this.radius = radius;
     }
 
-    @Override
     public void animeer(Graphics2D g2d) {
+        if (Math.abs(getOrigin().getX() - getLocation().getX()) >= radius) flipped = !flipped;
+        if (flipped)
+        {
+            setLocation(new Location(getLocation().getX() + speed, getLocation().getY()));
+        } else
+        {
+            setLocation(new Location(getLocation().getX() - speed, getLocation().getY()));
+        }
 
+        super.animeer(g2d, flipped);
     }
 
     @Override

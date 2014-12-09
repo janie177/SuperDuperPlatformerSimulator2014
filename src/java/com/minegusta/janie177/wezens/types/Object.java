@@ -1,5 +1,7 @@
 package com.minegusta.janie177.wezens.types;
 
+import com.minegusta.janie177.animation.AnimatedSprite;
+import com.minegusta.janie177.animation.Render;
 import com.minegusta.janie177.util.Location;
 
 import javax.imageio.ImageIO;
@@ -19,6 +21,7 @@ public abstract class Object
     private  int scale;
     private int frames;
     private int distanceBetweenFrames;
+    private int frame = 1;
 
     public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name)
     {
@@ -39,10 +42,20 @@ public abstract class Object
         } catch (Exception e) {e.printStackTrace();}
     }
 
-    public abstract void animeer(Graphics2D g2d);
+    public void animeer(Graphics2D g2d, boolean flipped)
+    {
+        AnimatedSprite animation = new AnimatedSprite(getImage(), getDistanceBetweenFrames());
+
+        if(frame > getFrames())frame = 1;
+
+        BufferedImage img = animation.getFrame(frame);
+
+        Render.renderInWorld(g2d, img, getLocation().getX(), getLocation().getRenderedY(), getScale(), flipped, getName(), getShowName());
+
+        frame++;
+    }
 
     public abstract void actionOnCollision(Graphics2D g2d);
-
 
     public BufferedImage getImage()
     {

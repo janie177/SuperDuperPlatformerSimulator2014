@@ -10,9 +10,8 @@ public class IdleObject extends Object {
         super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, showName, name);
     }
 
-    @Override
     public void animeer(Graphics2D g2d) {
-
+        super.animeer(g2d, false);
     }
 
     @Override

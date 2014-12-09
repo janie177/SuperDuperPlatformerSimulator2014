@@ -24,7 +24,7 @@ public class Level1 implements LevelModel
         //maak de map eerst leeg.
         Storage.objectMap.clear();
 
-        MovingCreature[] wezens = {MovingCreatures.GROTE_JOOST.build(600,200), MovingCreatures.CAGE.build(400,200), MovingCreatures.JOOST.build(200, 180)};
+        MovingCreature[] wezens = {MovingCreatures.JOOST.build(200, 180)};
 
         for(MovingCreature w : wezens)
         {
