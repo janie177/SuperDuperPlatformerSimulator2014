@@ -13,7 +13,6 @@ public enum MovingCreatures
 
     private int health;
     private String imagePath;
-    private boolean lopend;
     private int radius;
     private int frames;
     private int scale;
