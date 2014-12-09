@@ -5,8 +5,9 @@ import com.minegusta.janie177.util.Location;
 import java.awt.*;
 
 public class IdleCreature extends LivingObject {
-    public IdleCreature(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, Location location, int health, boolean showName, String name) {
-        super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, location, health, showName, name);
+
+    public IdleCreature(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, int health, boolean showName, String name) {
+        super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, health, showName, name);
     }
 
     @Override

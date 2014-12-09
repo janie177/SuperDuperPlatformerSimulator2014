@@ -20,14 +20,14 @@ public abstract class Object
     private int frames;
     private int distanceBetweenFrames;
 
-    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, Location location, boolean showName, String name)
+    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name)
     {
         this.hasCollision = hasCollision;
         this. hitBoxRadius = hitBoxRadius;
         this.origin = origin;
         this.damage = damage;
         this.scale = scale;
-        this.location = location;
+        this.location = origin;
         this.name = name;
         this.showName = showName;
         this.frames = frames;

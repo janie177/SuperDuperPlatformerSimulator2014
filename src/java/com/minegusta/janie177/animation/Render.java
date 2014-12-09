@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Render
 {
     //Door altijd overal 400 aan toe te voegen zal de speler altijd in het midden van het scherm staan. Alles lijkt dus 400 pixels verder te zijn dan het werkelijk is.
-    //Als alle objecten dus via deze class gaan zal dit niets uitmaken. Als objecten via een andere class gaan zullen ze op een andere locatie lijken ze zijn.
+    //Als alle objecten dus via deze class gaan zal dit niets uitmaken. Als objecten via een andere class worden toegevoegt zullen ze op een andere locatie lijken ze zijn.
     private static int added = 400;
 
     /**

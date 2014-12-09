@@ -6,10 +6,7 @@ import com.minegusta.janie177.wezens.types.MovingCreature;
 
 public enum MovingCreatures
 {
-    JOOST(20, "/sprites/wezens/joost3.png", 80, 1, 1, 62, 7, true, "Joost", 1, false),
-    GROTE_JOOST(20, "/sprites/wezens/joost3.png", 80, 1, 4, 62, 4, true, "Big Joost", 1, false),
-    CAGE(20, "/sprites/wezens/cage.png", 80, 1, 1, 256, 6, true, "CAGE", 1, false),
-    BAL_ELLENDE(10, "/sprites/speler/springlinks.png", 400, 4, 8, 32, 18, false, "Bal Der Ellende", 1, false);
+    JOOST(10, "/sprites/wezens/joost3.png", 50, 1, 5, 62, 3, true, "NoobDutch", 1, true);
 
     private int health;
     private String imagePath;
@@ -55,12 +52,11 @@ public enum MovingCreatures
         this.damage = damage;
         this.hitBoxRadius = (distanceBetweenFrames / 2) * scale;
         this.hasColission = hasColission;
-
     }
 
     public MovingCreature build(int x, int y)
     {
         Location origin = new Location(x, y);
-        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, origin, health, showName, name, speed, radius);
+        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, health, showName, name, speed, radius);
     }
 }

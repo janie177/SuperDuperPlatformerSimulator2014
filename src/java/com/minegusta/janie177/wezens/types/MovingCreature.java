@@ -15,8 +15,8 @@ public class MovingCreature extends LivingObject
     private int speed;
     private int frame = 1;
 
-    public MovingCreature(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, Location location, int health, boolean showName, String name, int speed, int radius) {
-        super(imagePath, frames, scale, distanceBetweenFrames, hasCollision, hitBoxRadius, origin, damage, location, health, showName, name);
+    public MovingCreature(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, int health, boolean showName, String name, int speed, int radius) {
+        super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, health, showName, name);
         this.speed = speed;
         this. radius = radius;
     }
