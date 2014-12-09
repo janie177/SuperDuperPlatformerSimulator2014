@@ -4,7 +4,7 @@ package com.minegusta.janie177.wezens.soorten;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.wezens.types.MovingCreature;
 
-public enum LopendeWezens
+public enum MovingCreatures
 {
     JOOST(20, "/sprites/wezens/joost3.png", 80, 1, 1, 62, 7, true, "Joost", 1, false),
     GROTE_JOOST(20, "/sprites/wezens/joost3.png", 80, 1, 4, 62, 4, true, "Big Joost", 1, false),
@@ -25,7 +25,7 @@ public enum LopendeWezens
     private boolean hasColission;
     private int damage;
 
-    private LopendeWezens(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius)
+    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius)
     {
         this.health = health;
         this.imagePath = imagePath;
@@ -42,7 +42,7 @@ public enum LopendeWezens
 
     }
 
-    private LopendeWezens(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission)
+    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission)
     {
         this.health = health;
         this.imagePath = imagePath;
@@ -61,6 +61,7 @@ public enum LopendeWezens
 
     public MovingCreature build(int x, int y)
     {
-        return new MovingCreature(health, new Location(x,y), imagePath, radius, frames, scale, distanceBetweenFrames, speed, showName, name, damage, hasColission, hitBoxRadius);
+        Location origin = new Location(x, y);
+        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, origin, health, showName, name, speed, radius);
     }
 }
