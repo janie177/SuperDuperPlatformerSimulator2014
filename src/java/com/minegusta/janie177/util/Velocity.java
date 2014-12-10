@@ -48,17 +48,23 @@ public class Velocity
         if(x != 0)
         {
             if(Math.abs(x) < 3)x = 0;
-            x = lessen(x);
+            else x = lessenX(x);
         }
         if(y != 0)
         {
-            if(Math.abs(y) < 3) y = 0;
-            y = lessen(y);
+            if(Math.abs(y) < 2) y = 0;
+            else y = lessenY(y);
         }
     }
 
-    private int lessen(int i)
+    private int lessenX(int i)
     {
-        return i - i / 3;
+        return i - i/3;
+    }
+
+    private int lessenY(int i)
+    {
+        if (i > 0)return i - 1;
+        return i + 1;
     }
 }

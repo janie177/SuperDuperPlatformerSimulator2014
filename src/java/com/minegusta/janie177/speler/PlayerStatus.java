@@ -11,7 +11,7 @@ public class PlayerStatus
     private static int health = 5;
     private static int damage = 1;
     private static int speed = 9;
-    private static int jumpSpeed = 18;
+    private static int jumpSpeed = 25;
 
     //-- Alle locatie veranderende info --//
     private static boolean left = false;
@@ -126,7 +126,7 @@ public class PlayerStatus
     public static void jump()
     {
         if(canJump)velocity.setY(jumpSpeed);
-        canJump = false;
+        canJump = true;
     }
 
 
