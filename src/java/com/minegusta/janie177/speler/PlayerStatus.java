@@ -126,7 +126,7 @@ public class PlayerStatus
     public static void jump()
     {
         if(canJump)velocity.setY(jumpSpeed);
-        canJump = true;
+        canJump = false;
     }
 
 
