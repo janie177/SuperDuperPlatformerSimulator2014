@@ -1,5 +1,7 @@
 package com.minegusta.janie177.wezens.types;
 
+import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.speler.PlayerStatus;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.util.Vector;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
@@ -18,6 +20,7 @@ public class Projectile extends Object
     public void animeer(Graphics2D g2d)
     {
         setLocation(direction.move(getLocation()));
+        if(Math.abs(getLocation().getX() - PlayerStatus.getX()) > GamePanel.width) //Delete deze class uit de map projectielen
         super.animate(g2d, false);
     }
 }

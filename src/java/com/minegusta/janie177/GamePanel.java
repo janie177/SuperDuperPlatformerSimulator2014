@@ -15,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //-- Alle informatie die belangrijk is voor het scherm zelf --//
 
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private static int scale = 10;
+	private static int scale = 15;
 	public static int height = 60 * scale;
 	public static int width = 80 * scale;
 	private Thread thread = null;
@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             //Teken methode voor de wereld, speler en entities. Wordt doorgegeven aan de level class.
             draw();
 
-            //Tekent het uiteindelijke resultaat op het scherm.
+            //Teken alles op het scherm zelf
             updateScreen();
 
             //Laat de thread slapen om de gewenste FPS te krijgen.
@@ -100,6 +100,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
 	private void updateScreen()
     {
+        //Check hier of het scherm geen null meer is. Soms is dit het geval bij het opstarten.
+        if(getGraphics() == null) return;
         getGraphics().drawImage(image, 0, 0, null);
         getGraphics().dispose();
     }

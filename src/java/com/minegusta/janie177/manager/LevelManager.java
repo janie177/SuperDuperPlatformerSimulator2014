@@ -1,5 +1,7 @@
 package com.minegusta.janie177.manager;
 
+import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.Main;
 import com.minegusta.janie177.levels.Level;
 import com.minegusta.janie177.levels.LevelModel;
 
@@ -26,5 +28,5 @@ public class LevelManager
 	{
         lm.updateBackground(g2d);
         lm.draw(g2d);
-	}
+    }
 }
