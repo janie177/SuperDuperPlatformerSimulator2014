@@ -135,6 +135,11 @@ public abstract class Object
         return hitBoxRadius;
     }
 
+    public Rectangle getHitBox()
+    {
+        return new Rectangle(location.getX() - hitBoxRadius, location.getY() - hitBoxRadius, image.getWidth() * scale, image.getHeight() * scale);
+    }
+
     public void setOrigin(Location l)
     {
         this.origin = l;
