@@ -13,7 +13,7 @@ public class Level1 implements LevelModel
     private BackGround bg;
     public Level1()
     {
-        this.bg = new BackGround("/sprites/bg/bos.png", "/sprites/bg/bos.png", "/sprites/bg/3.png");
+        this.bg = new BackGround("/sprites/bg/bos.png", "/sprites/bg/bos.png", "/sprites/bg/Lake.png");
         addObjects();
     }
 
