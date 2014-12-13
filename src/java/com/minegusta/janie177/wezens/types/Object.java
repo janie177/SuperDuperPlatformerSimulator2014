@@ -3,6 +3,7 @@ package com.minegusta.janie177.wezens.types;
 import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.Main;
 import com.minegusta.janie177.animation.AnimatedSprite;
+import com.minegusta.janie177.speler.PlayerStatus;
 import com.minegusta.janie177.util.Render;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
@@ -74,6 +75,7 @@ public abstract class Object
             case DAMAGE:
             {
                 //Damage de speler hier
+                PlayerStatus.damage(damage);
             }
                 break;
             case BOUNCE:

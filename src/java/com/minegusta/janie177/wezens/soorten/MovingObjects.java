@@ -2,7 +2,6 @@ package com.minegusta.janie177.wezens.soorten;
 
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
-import com.minegusta.janie177.wezens.types.MovingCreature;
 import com.minegusta.janie177.wezens.types.MovingObject;
 
 public enum MovingObjects

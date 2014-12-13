@@ -17,7 +17,7 @@ public class MovingObject extends Object
         this.radius = radius;
     }
 
-    public void animeer(Graphics2D g2d) {
+    public void animate(Graphics2D g2d) {
         if (Math.abs(getOrigin().getX() - getLocation().getX()) >= radius) flipped = !flipped;
         if (flipped)
         {

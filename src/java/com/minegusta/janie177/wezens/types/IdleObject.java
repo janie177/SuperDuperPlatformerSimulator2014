@@ -11,7 +11,7 @@ public class IdleObject extends Object {
         super(imagePath, frames, distanceBetweenFrames, scale, hasCollision, hitBoxRadius, origin, damage, showName, name, action, bounceSpeed);
     }
 
-    public void animeer(Graphics2D g2d) {
+    public void animate(Graphics2D g2d) {
         super.animate(g2d, false);
     }
 

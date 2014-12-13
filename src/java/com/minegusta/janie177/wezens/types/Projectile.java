@@ -17,7 +17,7 @@ public class Projectile extends Object
         this.direction = direction;
     }
 
-    public void animeer(Graphics2D g2d)
+    public void animate(Graphics2D g2d)
     {
         setLocation(direction.move(getLocation()));
         if(Math.abs(getLocation().getX() - PlayerStatus.getX()) > GamePanel.width) //Delete deze class uit de map projectielen

@@ -1,5 +1,6 @@
 package com.minegusta.janie177;
 
+import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.levels.LevelUp;
 import com.minegusta.janie177.manager.LevelManager;
 import com.minegusta.janie177.speler.PlayerStatus;
@@ -22,7 +23,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private Image image;
     private boolean aan = false;
 	private Graphics2D g2d;
-	private int fps = 60;
+	private int fps = 120;
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
 	private long wait = 1000/fps;
     //Het level waarin je zit.
@@ -59,7 +60,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
         aan = true;
 		thread.start();
 	}
-	
+
+    private static int loadInterval = -1;
+
 	@Override
 	public void run() 
 	{
@@ -68,6 +71,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             g2d = (Graphics2D) image.getGraphics();
 
+            //Deze methoden moeten altijd eerst updaten
+
+            //Update de spelers locatie en snelheid
+            PlayerStatus.update();
+
+
+            //Update alle objecten
+
+            if(loadInterval < 0) {
+                loadInterval = 30;
+                Storage.updateLoadedObjects();
+            }
+            loadInterval--;
             //Teken methode voor de wereld, speler en entities. Wordt doorgegeven aan de level class.
             draw();
 

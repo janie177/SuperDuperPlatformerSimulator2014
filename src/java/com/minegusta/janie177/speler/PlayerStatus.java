@@ -53,7 +53,6 @@ public class PlayerStatus
         if(getX() < 0) setLocation(getLocation().setX(0));
 
         velocity.update();
-
     }
 
     public static void damage(int damage)
