@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 	private Image image;
     private boolean aan = false;
 	private Graphics2D g2d;
-	private int fps = 120;
+	private int fps = 60;
 	//Het aantal miliseconden dat de thread moet wachten om de gewenste FPS te krijgen.
 	private long wait = 1000/fps;
     //Het level waarin je zit.
