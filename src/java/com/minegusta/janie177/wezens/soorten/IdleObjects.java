@@ -14,27 +14,10 @@ public enum IdleObjects
     private int distanceBetweenFrames;
     private boolean showName;
     private String name;
-    private int hitBoxRadius;
     private boolean hasColission;
     private int damage;
     private CollisionAction action;
     private double bounceSpeed;
-
-    private IdleObjects(String imagePath, int frames, int scale, int distanceBetweenFrames, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius, CollisionAction action, double bounceSpeed)
-    {
-        this.imagePath = imagePath;
-        this.frames = frames;
-        this.scale = scale;
-        this.distanceBetweenFrames = distanceBetweenFrames;
-        this. showName = showName;
-        this.name = name;
-        this.damage = damage;
-        this.hitBoxRadius = hitBoxRadius;
-        this.hasColission = hasColission;
-        this.action = action;
-        this.bounceSpeed = bounceSpeed;
-
-    }
 
     private IdleObjects(String imagePath, int frames, int scale, int distanceBetweenFrames, boolean showName, String name, int damage, boolean hasColission, CollisionAction action, double bounceSpeed)
     {
@@ -45,7 +28,6 @@ public enum IdleObjects
         this. showName = showName;
         this.name = name;
         this.damage = damage;
-        this.hitBoxRadius = (distanceBetweenFrames / 2) * scale;
         this.hasColission = hasColission;
         this.action = action;
         this.bounceSpeed = bounceSpeed;
@@ -54,6 +36,6 @@ public enum IdleObjects
     public IdleObject build(int x, int y)
     {
         Location origin = new Location(x, y);
-        return new IdleObject(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, showName, name, action, bounceSpeed);
+        return new IdleObject(imagePath, frames, distanceBetweenFrames, scale, hasColission, origin, damage, showName, name, action, bounceSpeed);
     }
 }

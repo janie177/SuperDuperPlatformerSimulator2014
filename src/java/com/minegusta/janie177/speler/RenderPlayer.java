@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-public class RenderSpeler
+public class RenderPlayer
 {
     //Map waarin de status van de speler bewaard is
     private static ConcurrentMap<SpelerAcie, Integer> animatieMap = new ConcurrentHashMap<SpelerAcie, Integer>();
@@ -17,10 +17,12 @@ public class RenderSpeler
     private Graphics2D g2d;
     private static int x = 0;
     private static int y = 0;
+    private boolean sprint;
     private BufferedImage speler;
 
     public void render(Graphics2D g2d)
     {
+        this.sprint = PlayerStatus.getRunning();
         this.g2d = g2d;
         boolean jump = PlayerStatus.getY() > y;
 

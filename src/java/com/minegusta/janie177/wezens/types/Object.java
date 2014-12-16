@@ -15,7 +15,6 @@ import java.awt.image.BufferedImage;
 public abstract class Object
 {
     private boolean hasCollision;
-    private int hitBoxRadius;
     private Location origin;
     private int damage;
     private Location location;
@@ -29,10 +28,9 @@ public abstract class Object
     private int distanceBetweenFrames;
     private int frame = 1;
 
-    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, int hitBoxRadius, Location origin, int damage, boolean showName, String name, CollisionAction action, double bounceSpeed)
+    public Object(String imagePath, int frames, int distanceBetweenFrames, int scale, boolean hasCollision, Location origin, int damage, boolean showName, String name, CollisionAction action, double bounceSpeed)
     {
         this.hasCollision = hasCollision;
-        this. hitBoxRadius = hitBoxRadius;
         this.origin = origin;
         this.damage = damage;
         this.scale = scale;
@@ -130,14 +128,9 @@ public abstract class Object
         return hasCollision;
     }
 
-    public int getHitBoxRadius()
-    {
-        return hitBoxRadius;
-    }
-
     public Rectangle getHitBox()
     {
-        return new Rectangle(location.getX() - hitBoxRadius, location.getY() - hitBoxRadius, image.getWidth() * scale, image.getHeight() * scale);
+        return new Rectangle(location.getX() - distanceBetweenFrames / 2, location.getY() - image.getHeight() / 2, distanceBetweenFrames * scale, image.getHeight() * scale);
     }
 
     public void setOrigin(Location l)

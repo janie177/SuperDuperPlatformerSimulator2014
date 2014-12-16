@@ -18,30 +18,11 @@ public enum MovingCreatures
     private int speed;
     private boolean showName;
     private String name;
-    private int hitBoxRadius;
     private boolean hasColission;
     private int damage;
     private CollisionAction action;
     private double bounceSpeed;
 
-    private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, int hitBoxRadius, CollisionAction action, double bounceSpeed)
-    {
-        this.health = health;
-        this.imagePath = imagePath;
-        this.radius = radius;
-        this.frames = frames;
-        this.scale = scale;
-        this.distanceBetweenFrames = distanceBetweenFrames;
-        this.speed = speed;
-        this. showName = showName;
-        this.name = name;
-        this.damage = damage;
-        this.hitBoxRadius = hitBoxRadius;
-        this.hasColission = hasColission;
-        this.action = action;
-        this.bounceSpeed = bounceSpeed;
-
-    }
 
     private MovingCreatures(int health, String imagePath, int radius, int frames, int scale, int distanceBetweenFrames, int speed, boolean showName, String name, int damage, boolean hasColission, CollisionAction action, double bounceSpeed)
     {
@@ -55,7 +36,6 @@ public enum MovingCreatures
         this. showName = showName;
         this.name = name;
         this.damage = damage;
-        this.hitBoxRadius = (distanceBetweenFrames / 2) * scale;
         this.hasColission = hasColission;
         this.action = action;
         this.bounceSpeed = bounceSpeed;
@@ -64,6 +44,6 @@ public enum MovingCreatures
     public MovingCreature build(int x, int y)
     {
         Location origin = new Location(x, y);
-        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, hitBoxRadius, origin, damage, health, showName, name, speed, radius, action, bounceSpeed);
+        return new MovingCreature(imagePath, frames, distanceBetweenFrames, scale, hasColission, origin, damage, health, showName, name, speed, radius, action, bounceSpeed);
     }
 }

@@ -85,6 +85,21 @@ public class PlayerStatus
         return location.getY();
     }
 
+    public static int getJumpSpeed()
+    {
+        return jumpSpeed;
+    }
+
+    public static int getSpeed()
+    {
+        return speed;
+    }
+
+    public static boolean getRunning()
+    {
+        return sprint;
+    }
+
     public static int getRenderedY()
     {
         return location.getRenderedY();
