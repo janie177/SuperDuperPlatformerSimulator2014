@@ -11,7 +11,7 @@ public class ScreenLocation
 
     public static int getX1()
     {
-        return PlayerStatus.getX() - GamePanel.width / 2;
+        return PlayerStatus.getX() - GamePanel.width;
     }
 
     public static int getCenter()
@@ -21,6 +21,6 @@ public class ScreenLocation
 
     public static int getX2()
     {
-        return PlayerStatus.getX() + GamePanel.width / 2;
+        return PlayerStatus.getX() + GamePanel.width;
     }
 }

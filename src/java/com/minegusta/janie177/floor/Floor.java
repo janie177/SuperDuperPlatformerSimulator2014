@@ -2,6 +2,7 @@ package com.minegusta.janie177.floor;
 
 
 import com.minegusta.janie177.GamePanel;
+import com.minegusta.janie177.util.Render;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -33,7 +34,7 @@ public class Floor
         for(int i = start; i <= end; i++)
         {
             if(holes.contains(i))return;
-            g2d.drawImage(image, Tile.getTile(i), GamePanel.height - height, Tile.getWidth(), Tile.getHeight(), null);
+            Render.renderInWorld(g2d, image, Tile.getTile(i), GamePanel.height - Tile.getHeight(), Tile.getWidth(), Tile.getHeight());
         }
     }
 }

@@ -29,6 +29,6 @@ public class Tile
 
     public static int getLastTile()
     {
-        return ScreenLocation.getX2() % width + 1;
+        return ScreenLocation.getX2() / width + 1;
     }
 }

@@ -6,7 +6,9 @@ public interface LevelModel {
 
     public void addObjects();
 
-    public void updateBackground(Graphics2D g2d);
+    public void update(Graphics2D g2d);
 
     public void draw(Graphics2D g2d);
+
+    public java.util.List<Integer> getHoles();
 }

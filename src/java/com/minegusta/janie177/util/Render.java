@@ -26,6 +26,23 @@ public class Render
         g2d.drawImage(img, xCentered, yCentered, img.getWidth() * scale, img.getHeight() * scale, null);
     }
 
+
+    /**
+     * Render an object in de wereld.
+     * @param g2d Het scherm waar je op tekent.
+     * @param img De image.
+     * @param x De x coordinaat.
+     * @param y De y ciirdinaat.
+     * @param width De hoogte.
+     * @param height De breedte.
+     */
+    public static void renderInWorld(Graphics2D g2d, BufferedImage img, int x, int y, int width, int height)
+    {
+        int xCentered = (x - ScreenLocation.getCenter()) + added - (width / 2);
+        int yCentered = y - (height / 2);
+        g2d.drawImage(img, xCentered, yCentered, width, height, null);
+    }
+
     /**
      * Render een object in de wereld.
      * @param g2d Het Graphics2D scherm waarop het gerenderd wordt.
@@ -81,5 +98,10 @@ public class Render
             width = -width;
         }
         g2d.drawImage(img, xCentered, yCentered, width, img.getHeight() * scale, null);
+    }
+
+    public static int getAdded()
+    {
+        return added;
     }
 }
