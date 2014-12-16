@@ -4,8 +4,8 @@ import com.minegusta.janie177.manager.ScreenLocation;
 
 public class Tile
 {
-    private static int width = 30;
-    private static int height = 20;
+    private static int width = 90;
+    private static int height = 60;
 
     public static int getWidth()
     {
@@ -24,11 +24,11 @@ public class Tile
 
     public static int getFirstTile()
     {
-        return ScreenLocation.getX1() - ScreenLocation.getX1() % width;
+        return ScreenLocation.getX1() / width;
     }
 
     public static int getLastTile()
     {
-        return ScreenLocation.getX2() / width + 1;
+        return ScreenLocation.getX2() / width;
     }
 }
