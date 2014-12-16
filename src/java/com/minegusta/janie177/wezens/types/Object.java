@@ -61,7 +61,7 @@ public abstract class Object
         frame++;
     }
 
-    public void actionOnCollision(Graphics2D g2d)
+    public void actionOnCollision()
     {
         switch (action)
         {
@@ -79,6 +79,7 @@ public abstract class Object
             case BOUNCE:
             {
                 //Lanceer de speler hier
+                PlayerStatus.getVelocity().setY((int)bounceSpeed);
             }
                 break;
             case LEVELUP:

@@ -55,6 +55,16 @@ public class PlayerStatus
         velocity.update();
     }
 
+    public static Velocity getVelocity()
+    {
+        return velocity;
+    }
+
+    public static void setVelocity(Velocity v)
+    {
+        velocity = v;
+    }
+
     public static void damage(int damage)
     {
         health = health - damage;

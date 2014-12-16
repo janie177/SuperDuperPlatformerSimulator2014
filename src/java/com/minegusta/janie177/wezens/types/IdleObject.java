@@ -14,9 +14,4 @@ public class IdleObject extends Object {
     public void animate(Graphics2D g2d) {
         super.animate(g2d, false);
     }
-
-    @Override
-    public void actionOnCollision(Graphics2D g2d) {
-
-    }
 }
