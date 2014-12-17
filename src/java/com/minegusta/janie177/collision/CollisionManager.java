@@ -7,6 +7,7 @@ import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.floor.Tile;
 import com.minegusta.janie177.speler.PlayerStatus;
 import com.minegusta.janie177.util.Velocity;
+import com.minegusta.janie177.wezens.types.LivingObject;
 import com.minegusta.janie177.wezens.types.Object;
 
 import java.awt.*;
@@ -50,6 +51,22 @@ public class CollisionManager
             {
                 PlayerStatus.setLocation(PlayerStatus.getLocation().setY(height));
                 PlayerStatus.setCanJump(true);
+            }
+        }
+
+
+        for(Object o : Storage.getLoadedObjects())
+        {
+            if(o.getLocation().getY() < height)
+            {
+                if(Main.getGamePanel().getManager().getHoles().contains(Tile.getTileFromLocation(o.getLocation().getX())))
+                {
+
+                }
+                else
+                {
+                    o.setLocation(o.getLocation().setY(height));
+                }
             }
         }
     }
