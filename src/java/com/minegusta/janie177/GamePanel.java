@@ -1,5 +1,6 @@
 package com.minegusta.janie177;
 
+import com.minegusta.janie177.collision.CollisionManager;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.levels.LevelUp;
 import com.minegusta.janie177.manager.LevelManager;
@@ -76,6 +77,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             //Update de spelers locatie en snelheid
             PlayerStatus.update();
 
+            //Check voor botsingen
+            CollisionManager.floorCheck();
+            CollisionManager.update();
 
             //Update alle objecten
 

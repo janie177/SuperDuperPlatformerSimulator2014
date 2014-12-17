@@ -38,14 +38,18 @@ public class CollisionManager
     public static void floorCheck()
     {
         int height = Main.getGamePanel().getManager().getFloorHeight();
-        if(PlayerStatus.getLocation().getX() < height)
+
+        if(PlayerStatus.getLocation().getY() < height)
         {
-            if(!Main.getGamePanel().getManager().getHoles().contains(Tile.getTileFromLocation(PlayerStatus.getLocation().getX())))
+            System.out.println("Speler is onder de y");
+            if(Main.getGamePanel().getManager().getHoles().contains(Tile.getTileFromLocation(PlayerStatus.getLocation().getX())))
             {
+                System.out.println("Damage de speler");
                 PlayerStatus.damage(3);
             }
             else
             {
+                System.out.println("speler locatie verzet");
                 PlayerStatus.setLocation(PlayerStatus.getLocation().setY(height));
             }
         }
