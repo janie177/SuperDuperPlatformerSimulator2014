@@ -45,30 +45,27 @@ public class Velocity
 
     public void update()
     {
-        if(x != 0)
-        {
-            if(Math.abs(x) < 3)x = 0;
-            else x = lessenX(x);
-        }
-        if(y != 0)
-        {
-            if(Math.abs(y) < 2) y = 0;
-            else y = lessenY(y);
-        }
+        x = lessenX();
+        y = lessenY();
     }
 
-    private int lessenX(int i)
+    private int lessenX()
     {
-        return i - i/3;
+        if(Math.abs(x) < 3)return 0;
+        return x - x/3;
     }
 
-    private int lessenY(int i)
+    private int lessenY()
     {
-        int newY = i - 2;
-        if(i > 0)
+        int newY = y - 2;
+        if(newY > 0)
         {
             return newY - 1;
         }
-        return newY + 1;
+        else if(newY < 0)
+        {
+            return newY + 1;
+        }
+        return 0;
     }
 }
