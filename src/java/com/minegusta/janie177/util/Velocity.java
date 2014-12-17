@@ -64,7 +64,11 @@ public class Velocity
 
     private int lessenY(int i)
     {
-        if (i > 0)return i - 1;
-        return i + 1;
+        int newY = i - 2;
+        if(i > 0)
+        {
+            return newY - 1;
+        }
+        return newY + 1;
     }
 }

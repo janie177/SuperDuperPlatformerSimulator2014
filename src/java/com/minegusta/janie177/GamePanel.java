@@ -81,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
             CollisionManager.floorCheck();
             CollisionManager.update();
 
+
             //Update alle objecten
 
             if(loadInterval < 0) {

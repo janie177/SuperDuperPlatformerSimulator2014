@@ -6,6 +6,7 @@ import com.minegusta.janie177.Main;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.floor.Tile;
 import com.minegusta.janie177.speler.PlayerStatus;
+import com.minegusta.janie177.util.Velocity;
 import com.minegusta.janie177.wezens.types.Object;
 
 import java.awt.*;
@@ -37,20 +38,18 @@ public class CollisionManager
 
     public static void floorCheck()
     {
-        int height = Main.getGamePanel().getManager().getFloorHeight();
+        int height = Main.getGamePanel().getManager().getFloorHeight() + Tile.getHeight();
 
         if(PlayerStatus.getLocation().getY() < height)
         {
-            System.out.println("Speler is onder de y");
             if(Main.getGamePanel().getManager().getHoles().contains(Tile.getTileFromLocation(PlayerStatus.getLocation().getX())))
             {
-                System.out.println("Damage de speler");
                 PlayerStatus.damage(3);
             }
             else
             {
-                System.out.println("speler locatie verzet");
                 PlayerStatus.setLocation(PlayerStatus.getLocation().setY(height));
+                PlayerStatus.setCanJump(true);
             }
         }
     }
