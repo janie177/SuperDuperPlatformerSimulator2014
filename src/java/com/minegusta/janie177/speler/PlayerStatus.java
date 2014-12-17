@@ -3,10 +3,13 @@ package com.minegusta.janie177.speler;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.util.Velocity;
 
+import java.awt.*;
+
 public class PlayerStatus
 {
     //-- Alle basis info --//
     private static Location location = new Location(50, 100);
+    private static Location oldLocation = new Location(50,100);
     private static Velocity velocity = new Velocity(0, 0);
     private static int health = 5;
     private static int damage = 1;
@@ -48,11 +51,17 @@ public class PlayerStatus
         }
 
         //Het verplaatsen van de speler
+        oldLocation = location;
         setLocation(getLocation().setX(getX() + velocity.getX()).setY(getY() + velocity.getY()));
         //X mag niet onder 0 komen.
         if(getX() < 0) setLocation(getLocation().setX(0));
 
         velocity.update();
+    }
+
+    public static Rectangle getHitBox()
+    {
+        return new Rectangle(getLocation().getX(), getLocation().getY(), 32*7, 32*7);
     }
 
     public static Velocity getVelocity()
@@ -73,6 +82,11 @@ public class PlayerStatus
     public static boolean isDead()
     {
         return health <= 0;
+    }
+
+    public static Location getOldLocation()
+    {
+        return oldLocation;
     }
 
     public static Location getLocation()

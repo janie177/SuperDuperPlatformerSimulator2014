@@ -27,4 +27,15 @@ public class LevelManager
         lm.update(g2d);
         lm.draw(g2d);
     }
+
+    public java.util.List<Integer> getHoles()
+    {
+        return lm.getHoles();
+    }
+
+    public int getFloorHeight()
+    {
+        return lm.getFloorHight();
+    }
+
 }

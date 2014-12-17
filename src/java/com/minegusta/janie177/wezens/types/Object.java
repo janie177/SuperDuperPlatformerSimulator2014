@@ -1,6 +1,5 @@
 package com.minegusta.janie177.wezens.types;
 
-import com.minegusta.janie177.GamePanel;
 import com.minegusta.janie177.Main;
 import com.minegusta.janie177.animation.AnimatedSprite;
 import com.minegusta.janie177.speler.PlayerStatus;

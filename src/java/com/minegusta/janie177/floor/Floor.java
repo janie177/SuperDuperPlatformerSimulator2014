@@ -37,4 +37,9 @@ public class Floor
             Render.renderInWorld(g2d, image, Tile.getTile(i), GamePanel.height - Tile.getHeight(), Tile.getWidth(), Tile.getHeight());
         }
     }
+
+    public int getHeight()
+    {
+        return height;
+    }
 }
