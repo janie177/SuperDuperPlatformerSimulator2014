@@ -41,6 +41,11 @@ public class Level1 implements LevelModel
 
     }
 
+    @Override
+    public int getFloorHeight() {
+        return floor.getHeight();
+    }
+
     public void update(Graphics2D g2d)
     {
         bg.update(g2d);
