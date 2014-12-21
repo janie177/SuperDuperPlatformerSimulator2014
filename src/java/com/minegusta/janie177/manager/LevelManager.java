@@ -35,7 +35,7 @@ public class LevelManager
 
     public int getFloorHeight()
     {
-        return lm.getFloorHight();
+        return lm.getFloorHeight();
     }
 
 }
