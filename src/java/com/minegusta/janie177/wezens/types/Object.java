@@ -17,6 +17,7 @@ public abstract class Object
     private Location origin;
     private int damage;
     private Location location;
+    private boolean cancelled = false;
     private BufferedImage image;
     private String name;
     private boolean showName;
@@ -100,12 +101,27 @@ public abstract class Object
 
     public void setLocation(Location l)
     {
-        this.location = l;
+        if(!cancelled)
+        {
+            this.location = l;
+        }
+        cancelled = false;
+
     }
 
     public Location getLocation()
     {
         return location;
+    }
+
+    public boolean isCancelled()
+    {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancel)
+    {
+        this.cancelled = cancel;
     }
 
     public String getName()

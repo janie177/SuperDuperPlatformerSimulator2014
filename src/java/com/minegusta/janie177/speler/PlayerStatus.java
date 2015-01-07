@@ -9,12 +9,12 @@ public class PlayerStatus
 {
     //-- Alle basis info --//
     private static Location location = new Location(50, 100);
-    private static Location oldLocation = new Location(50,100);
+    private static Location oldLocation = location;
     private static Velocity velocity = new Velocity(0, 0);
     private static int health = 5;
     private static int damage = 1;
     private static int speed = 9;
-    private static int jumpSpeed = 32;
+    private static int jumpSpeed = 40;
 
     //-- Alle locatie veranderende info --//
     private static boolean left = false;
@@ -22,6 +22,7 @@ public class PlayerStatus
     private static boolean down = false;
     private static boolean sprint = false;
     private static boolean canJump = true;
+    private static boolean cancel = false;
 
     //-- Alle methodes die hier bij horen --//
 
@@ -30,12 +31,12 @@ public class PlayerStatus
         if(sprint)
         {
             speed = 14;
-            jumpSpeed = 26;
+            jumpSpeed = 28;
         }
         else
         {
             speed = 9;
-            jumpSpeed = 18;
+            jumpSpeed = 22;
         }
         if(left)
         {
@@ -50,13 +51,29 @@ public class PlayerStatus
             velocity.setY(-jumpSpeed);
         }
 
-        //Het verplaatsen van de speler
-        oldLocation = location;
-        setLocation(getLocation().setX(getX() + velocity.getX()).setY(getY() + velocity.getY()));
-        //X mag niet onder 0 komen.
-        if(getX() < 0) setLocation(getLocation().setX(0));
+        if(!cancel)
+        {
+            //Het verplaatsen van de speler
+            setLocation(getLocation().setX(getX() + velocity.getX()).setY(getY() + velocity.getY()));
+            //X mag niet onder 0 komen.
+            if(getX() < 0) setLocation(getLocation().setX(0));
 
-        velocity.update();
+            velocity.setY(velocity.getY() - 2);
+            if(velocity.getY() < -15)velocity.setY(-15);
+
+            velocity.update();
+
+            int oldX = getLocation().getX() - 3*getVelocity().getX();
+            int oldY = getLocation().getY();
+            oldLocation = new Location(oldX, oldY);
+        }
+        else{
+            setLocation(oldLocation);
+        }
+        cancel = false;
+
+
+
     }
 
     public static Rectangle getHitBox()
@@ -82,11 +99,6 @@ public class PlayerStatus
     public static boolean isDead()
     {
         return health <= 0;
-    }
-
-    public static Location getOldLocation()
-    {
-        return oldLocation;
     }
 
     public static Location getLocation()
@@ -117,6 +129,16 @@ public class PlayerStatus
     public static int getSpeed()
     {
         return speed;
+    }
+
+    public static boolean isCancelled()
+    {
+        return cancel;
+    }
+
+    public static void setCancelled(boolean cancelled)
+    {
+        cancel = cancelled;
     }
 
     public static boolean getRunning()

@@ -57,14 +57,13 @@ public class Velocity
 
     private int lessenY()
     {
-        int newY = y - 3;
-        if(newY > 0)
+        if(y > 0)
         {
-            return newY - 1;
+            return y - 1;
         }
-        else if(newY < 0)
+        else if(y < 0)
         {
-            return newY + 1;
+            return y + 1;
         }
         return 0;
     }

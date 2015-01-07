@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
     //-- Alle informatie die belangrijk is voor het scherm zelf --//
 
 	//Schaal zodat het makkelijker is om straks de grootte van het scherm snel te veranderen.
-	private static int scale = 15;
+	private static int scale = 10;
 	public static int height = 60 * scale;
 	public static int width = 80 * scale;
 	private Thread thread = null;

@@ -28,7 +28,10 @@ public class CollisionManager
             if(!collides(PlayerStatus.getHitBox(), o.getHitBox()))continue;
             if(o.hasCollision())
             {
-               PlayerStatus.setLocation(PlayerStatus.getOldLocation());
+                PlayerStatus.setCancelled(true);
+
+                //Dit stopt objecten, maar dat is minder realistisch en alles loopt dat vast.
+                //o.setCancelled(true);
             }
             o.actionOnCollision();
         }
