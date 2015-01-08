@@ -17,10 +17,4 @@ public class AnimatedSprite
     {
         return img.getSubimage((index - 1) * distanceBetweenFrames, 0, distanceBetweenFrames, img.getHeight());
     }
-
-
-
-
-
-
 }

@@ -1,6 +1,7 @@
 package com.minegusta.janie177.wezens.types;
 
 import com.minegusta.janie177.util.Location;
+import com.minegusta.janie177.util.Velocity;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
 
 import java.awt.*;
@@ -22,9 +23,11 @@ public class MovingObject extends Object
         if (flipped)
         {
             setLocation(new Location(getLocation().getX() + speed, getLocation().getY()));
+            setVelocity(new Velocity(speed, 0));
         } else
         {
             setLocation(new Location(getLocation().getX() - speed, getLocation().getY()));
+            setVelocity(new Velocity(-speed, 0));
         }
 
         super.animate(g2d, flipped);

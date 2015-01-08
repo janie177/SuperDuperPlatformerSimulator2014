@@ -1,5 +1,6 @@
 package com.minegusta.janie177.speler;
 
+import com.minegusta.janie177.collision.Face;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.util.Velocity;
 
@@ -7,6 +8,7 @@ import java.awt.*;
 
 public class PlayerStatus
 {
+
     //-- Alle basis info --//
     private static Location location = new Location(50, 100);
     private static Location oldLocation = location;
@@ -15,6 +17,7 @@ public class PlayerStatus
     private static int damage = 1;
     private static int speed = 9;
     private static int jumpSpeed = 40;
+    private static Face[] direction = new Face[2];
 
     //-- Alle locatie veranderende info --//
     private static boolean left = false;
@@ -22,12 +25,15 @@ public class PlayerStatus
     private static boolean down = false;
     private static boolean sprint = false;
     private static boolean canJump = true;
-    private static boolean cancel = false;
+    private static boolean cancelWalk = false;
 
     //-- Alle methodes die hier bij horen --//
 
     public static void update()
     {
+        direction[0] = Face.IDLE;
+        direction[1] = Face.IDLE;
+
         if(sprint)
         {
             speed = 14;
@@ -40,18 +46,30 @@ public class PlayerStatus
         }
         if(left)
         {
+            direction[0] = Face.LEFT;
             velocity.setX(-speed);
         }
         if(right)
         {
+            direction[0] = Face.RIGHT;
             velocity.setX(speed);
         }
         if(down)
         {
+            direction[1] = Face.DOWN;
             velocity.setY(-jumpSpeed);
         }
+        //Check of de speler omhoog of omlaag gaat voor botsingen.
+        if(velocity.getY() > 0)
+        {
+            direction[1] = Face.UP;
+        }
+        else
+        {
+            direction[1] = Face.DOWN;
+        }
 
-        if(!cancel)
+        if(!cancelWalk)
         {
             //Het verplaatsen van de speler
             setLocation(getLocation().setX(getX() + velocity.getX()).setY(getY() + velocity.getY()));
@@ -70,10 +88,29 @@ public class PlayerStatus
         else{
             setLocation(oldLocation);
         }
-        cancel = false;
+        cancelWalk = false;
+    }
 
+    public static void blockMovement(Face face)
+    {
+        switch (face)
+        {
+            case UP: getVelocity().set(getVelocity().getX(), 0);
+                break;
+            case DOWN: getVelocity().set(getVelocity().getX(), 0);
+                break;
+            case LEFT: getVelocity().set(0, getVelocity().getX());
+                break;
+            case RIGHT: getVelocity().set(0, getVelocity().getX());
+                break;
+            default:
+                break;
+        }
+    }
 
-
+    public static Face[] getDirection()
+    {
+        return direction;
     }
 
     public static Rectangle getHitBox()
@@ -131,14 +168,14 @@ public class PlayerStatus
         return speed;
     }
 
-    public static boolean isCancelled()
+    public static boolean isWalkCancelled()
     {
-        return cancel;
+        return cancelWalk;
     }
 
-    public static void setCancelled(boolean cancelled)
+    public static void cancelWalk(boolean cancelled)
     {
-        cancel = cancelled;
+        cancelWalk = cancelled;
     }
 
     public static boolean getRunning()
@@ -193,9 +230,6 @@ public class PlayerStatus
         if(canJump)velocity.setY(jumpSpeed);
         canJump = false;
     }
-
-
-
 
     //Dit systeem werkt voor nu, maar voor springen enzo hebben we velocity nodig. Spelers moeten een snelheid hebben die afneemt zodat we ook zwaartekracht kunnen hebben.
     /**

@@ -5,11 +5,11 @@ import com.minegusta.janie177.Main;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.floor.Tile;
 import com.minegusta.janie177.speler.PlayerStatus;
-import com.minegusta.janie177.util.Location;
+import com.minegusta.janie177.wezens.types.MovingCreature;
+import com.minegusta.janie177.wezens.types.MovingObject;
 import com.minegusta.janie177.wezens.types.Object;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class CollisionManager
 {
@@ -29,29 +29,30 @@ public class CollisionManager
      * @param object Het object waarmee gebotst wordt.
      * @return De richting van de botsing ten opzichte van het object dat opgegeven is als botsende.
      */
-    public static CollisionFace getCollisionFace(Object bumping, Object object)
+    public static Face getCollisionFace(Rectangle bumping, Rectangle object)
     {
         Rectangle left,right,up,down;
-        Rectangle bumper = bumping.getHitBox();
 
-        Rectangle hitbox = object.getHitBox();
-        int width = (int) hitbox.getWidth();
-        int height = (int) hitbox.getHeight();
+        int width = (int) object.getWidth();
+        int height = (int) object.getHeight();
 
         //Maak een berg rechthoeken. De zijden zijn minder gevoelig voor botsen.
-        left = new Rectangle((int) hitbox.getMinX(), (int) hitbox.getMinY() + 2, 1, height - 4);
-        right = new Rectangle((int) hitbox.getMaxX(), (int) hitbox.getMinY() + 2, 1, height - 4);
-        up = new Rectangle((int) hitbox.getMinX(), (int) hitbox.getMinY(), width, 1);
-        down = new Rectangle((int) hitbox.getMinX(), (int) hitbox.getMaxY(), width, 1);
+        left = new Rectangle((int) object.getMinX(), (int) object.getMinY() + 2, 1, height - 4);
+        right = new Rectangle((int) object.getMaxX(), (int) object.getMinY() + 2, 1, height - 4);
+        up = new Rectangle((int) object.getMinX(), (int) object.getMinY(), width, 1);
+        down = new Rectangle((int) object.getMinX(), (int) object.getMaxY(), width, 1);
 
         //Dit lijkt verkeerd om, maar het klopt omdat het ten opzichte van het botsende object is.
-        if(bumper.intersects(left))return CollisionFace.RIGHT;
-        if(bumper.intersects(right))return CollisionFace.LEFT;
-        if(bumper.intersects(up))return CollisionFace.DOWN;
-        if(bumper.intersects(down))return CollisionFace.UP;
-        return CollisionFace.DOWN;
+        if(bumping.intersects(left))return Face.RIGHT;
+        if(bumping.intersects(right))return Face.LEFT;
+        if(bumping.intersects(up))return Face.DOWN;
+        if(bumping.intersects(down))return Face.UP;
+        return Face.DOWN;
     }
 
+    /**
+     * Kijk of de speler botst. Als dat het geval is, block dan movement.
+     */
     public static void update()
     {
         for(Object o : Storage.getLoadedObjects())
@@ -59,10 +60,27 @@ public class CollisionManager
             if(!collides(PlayerStatus.getHitBox(), o.getHitBox()))continue;
             if(o.hasCollision())
             {
-                PlayerStatus.setCancelled(true);
+                //Kaats de speler terug wanneer het object beweegt.
+                if(o instanceof MovingCreature || o instanceof MovingObject)
+                {
+                    if(Math.abs(o.getVelocity().getX()) > Math.abs(PlayerStatus.getVelocity().getX()))
+                    {
+                        PlayerStatus.setVelocity(o.getVelocity());
+                    }
+                }
 
-                //Dit stopt objecten, maar dat is minder realistisch en alles loopt dat vast.
-                //o.setCancelled(true);
+                Face collisionFace = getCollisionFace(PlayerStatus.getHitBox(), o.getHitBox());
+
+                for(Face direction : PlayerStatus.getDirection())
+                {
+                    if(direction == collisionFace)
+                    {
+                        PlayerStatus.blockMovement(direction);
+
+                    }
+                }
+
+
             }
             o.actionOnCollision();
         }

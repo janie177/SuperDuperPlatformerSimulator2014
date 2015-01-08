@@ -8,7 +8,7 @@ import com.minegusta.janie177.wezens.types.MovingCreature;
 public enum MovingCreatures
 {
     KITTEH(10, "/sprites/wezens/Flyingkittenofdeath.png", 50, 1, 1, 400, 4, true, "Kitteh", 1, false, CollisionAction.NOTHING, 4),
-    JOOST(10, "/sprites/wezens/joost3.png", 50, 1, 5, 62, 3, true, "Jooooost", 1, false, CollisionAction.NOTHING, 4);
+    JOOST(10, "/sprites/wezens/joost3.png", 50, 1, 5, 62, 3, true, "Jooooost", 1, true, CollisionAction.NOTHING, 4);
     private int health;
     private String imagePath;
     private int radius;
