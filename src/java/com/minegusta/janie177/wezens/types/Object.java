@@ -5,6 +5,7 @@ import com.minegusta.janie177.animation.AnimatedSprite;
 import com.minegusta.janie177.speler.PlayerStatus;
 import com.minegusta.janie177.util.Render;
 import com.minegusta.janie177.util.Location;
+import com.minegusta.janie177.util.Velocity;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
 
 import javax.imageio.ImageIO;
@@ -20,6 +21,7 @@ public abstract class Object
     private boolean cancelled = false;
     private BufferedImage image;
     private String name;
+    private Velocity velocity = new Velocity(0,0);
     private boolean showName;
     private  int scale;
     private int frames;
@@ -59,6 +61,21 @@ public abstract class Object
         Render.renderInWorld(g2d, img, getLocation().getX(), getLocation().getRenderedY(), getScale(), flipped, getName(), getShowName());
 
         frame++;
+    }
+
+    public Velocity getVelocity()
+    {
+        return velocity;
+    }
+
+    public void addVelocity(int x, int y)
+    {
+        velocity.add(x, y);
+    }
+
+    public void setVelocity(Velocity velocity)
+    {
+        this.velocity = velocity;
     }
 
     public void actionOnCollision()
@@ -113,6 +130,8 @@ public abstract class Object
     {
         return location;
     }
+
+
 
     public boolean isCancelled()
     {
