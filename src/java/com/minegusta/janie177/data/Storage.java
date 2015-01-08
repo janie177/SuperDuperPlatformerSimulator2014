@@ -42,14 +42,17 @@ public class Storage
         int playerLocation = PlayerStatus.getX();
 
         //Haal alle oude objecten weg.
-        for (Object o : loadedObjects) {
-            if (Math.abs(o.getLocation().getX() - playerLocation) > GamePanel.width) {
-                if (loadedObjects.contains(o)) loadedObjects.remove(o);
+        if(!loadedObjects.isEmpty())
+        {
+            for (Object o : loadedObjects) {
+                if (Math.abs(o.getLocation().getX() - playerLocation) > GamePanel.width) {
+                    if (loadedObjects.contains(o)) loadedObjects.remove(o);
 
-                //Kijk of het object leeft, en dan of het dood is.
-                if (o instanceof LivingObject) {
-                    if (((LivingObject) o).isDead()) {
-                        if (objects.contains(o)) objects.remove(o);
+                    //Kijk of het object leeft, en dan of het dood is.
+                    if (o instanceof LivingObject) {
+                        if (((LivingObject) o).isDead()) {
+                            if (objects.contains(o)) objects.remove(o);
+                        }
                     }
                 }
             }
