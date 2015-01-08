@@ -1,5 +1,6 @@
 package com.minegusta.janie177.wezens.types;
 
+import com.minegusta.janie177.collision.Face;
 import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.util.Velocity;
 import com.minegusta.janie177.wezens.collision.CollisionAction;
@@ -31,5 +32,11 @@ public class MovingObject extends Object
         }
 
         super.animate(g2d, flipped);
+    }
+
+    public Face getDirection()
+    {
+        if(flipped)return Face.RIGHT;
+        else return Face.LEFT;
     }
 }

@@ -68,7 +68,10 @@ public class PlayerStatus
         {
             direction[1] = Face.DOWN;
         }
+    }
 
+    public static void updateLocation()
+    {
         if(!cancelWalk)
         {
             //Het verplaatsen van de speler
@@ -91,13 +94,18 @@ public class PlayerStatus
         cancelWalk = false;
     }
 
+    public static void walk()
+    {
+        updateLocation();
+    }
+
     public static void blockMovement(Face face)
     {
         switch (face)
         {
-            case UP: getVelocity().set(getVelocity().getX(), 0);
+            case UP: getVelocity().set(getVelocity().getY(), 0);
                 break;
-            case DOWN: getVelocity().set(getVelocity().getX(), 0);
+            case DOWN: getVelocity().set(getVelocity().getY(), 0);
                 break;
             case LEFT: getVelocity().set(0, getVelocity().getX());
                 break;

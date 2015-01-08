@@ -74,12 +74,15 @@ public class GamePanel extends JPanel implements Runnable, KeyListener
 
             //Deze methoden moeten altijd eerst updaten
 
-            //Update de spelers locatie en snelheid
+            //Update de spelers snelheid
             PlayerStatus.update();
 
             //Check voor botsingen
             CollisionManager.playerFloorCheck();
             CollisionManager.update();
+
+            //Verzet de speler naar zijn volgende locatie.
+            PlayerStatus.walk();
 
 
             //Update alle objecten

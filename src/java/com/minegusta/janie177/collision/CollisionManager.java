@@ -5,6 +5,7 @@ import com.minegusta.janie177.Main;
 import com.minegusta.janie177.data.Storage;
 import com.minegusta.janie177.floor.Tile;
 import com.minegusta.janie177.speler.PlayerStatus;
+import com.minegusta.janie177.util.Location;
 import com.minegusta.janie177.wezens.types.MovingCreature;
 import com.minegusta.janie177.wezens.types.MovingObject;
 import com.minegusta.janie177.wezens.types.Object;
@@ -60,15 +61,6 @@ public class CollisionManager
             if(!collides(PlayerStatus.getHitBox(), o.getHitBox()))continue;
             if(o.hasCollision())
             {
-                //Kaats de speler terug wanneer het object beweegt.
-                if(o instanceof MovingCreature || o instanceof MovingObject)
-                {
-                    if(Math.abs(o.getVelocity().getX()) > Math.abs(PlayerStatus.getVelocity().getX()))
-                    {
-                        PlayerStatus.setVelocity(o.getVelocity());
-                    }
-                }
-
                 Face collisionFace = getCollisionFace(PlayerStatus.getHitBox(), o.getHitBox());
 
                 for(Face direction : PlayerStatus.getDirection())
@@ -76,11 +68,32 @@ public class CollisionManager
                     if(direction == collisionFace)
                     {
                         PlayerStatus.blockMovement(direction);
-
+                        //De speler staat op een object en kan dus weer springen.
+                        if(direction == Face.DOWN) PlayerStatus.setCanJump(true);
                     }
                 }
 
+                //Kaats de speler terug wanneer het object beweegt.
 
+                if(o instanceof MovingCreature || o instanceof MovingObject)
+                {
+                    boolean bounce = true;
+                    for(Face face : PlayerStatus.getDirection())
+                    {
+                        if(o instanceof MovingCreature)
+                        {
+                            if(((MovingCreature)o).getDirection() == face.getOpposite())bounce = false; 
+                        }
+                        else
+                        {
+                            if(((MovingObject)o).getDirection() == face.getOpposite())bounce = false;
+                        }
+                    }
+                    if(bounce && Math.abs(o.getVelocity().getX()) > Math.abs(PlayerStatus.getVelocity().getX()))
+                    {
+                        PlayerStatus.setLocation(new Location(PlayerStatus.getLocation().getX() + o.getVelocity().getX() , PlayerStatus.getLocation().getY()));
+                    }
+                }
             }
             o.actionOnCollision();
         }
