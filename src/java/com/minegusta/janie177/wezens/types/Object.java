@@ -60,6 +60,9 @@ public abstract class Object
 
         Render.renderInWorld(g2d, img, getLocation().getX(), getLocation().getRenderedY(), getScale(), flipped, getName(), getShowName());
 
+        //Render de grens om te kijken waar deze zit voor debugging
+        Render.renderInWorld(g2d, getHitBox());
+
         frame++;
     }
 

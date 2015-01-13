@@ -100,6 +100,13 @@ public class Render
         g2d.drawImage(img, xCentered, yCentered, width, img.getHeight() * scale, null);
     }
 
+    public static void renderInWorld(Graphics2D g2d, Shape shape)
+    {
+        int xCentered = (int) ((shape.getBounds().getX() - ScreenLocation.getCenter()) + added - (shape.getBounds().getWidth() / 2));
+        int yCentered = (int) (shape.getBounds().getY() - (shape.getBounds().getHeight() / 2));
+        g2d.drawRect(xCentered, yCentered, (int)shape.getBounds().getWidth(), (int)shape.getBounds().getHeight());
+    }
+
     public static int getAdded()
     {
         return added;
